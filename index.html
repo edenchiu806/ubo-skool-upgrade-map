@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UBO Skool 課程與使用者旅程規劃</title>
+  <meta name="description" content="凱龍統整版：UBO Skool 作為一人事業升級地圖的課程分級、模組解鎖與參與者使用者旅程規劃。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f1ece3;
+      --paper: #fcfaf5;
+      --paper-strong: #f7f1e7;
+      --ink: #1f1912;
+      --muted: #6a6157;
+      --line: #d7ccbd;
+      --accent: #7d5c3f;
+      --accent-soft: #ede2d4;
+      --accent-strong: #523520;
+      --ok: #2f5c49;
+      --warn: #7d3f1e;
+      --shadow: 0 24px 60px rgba(41, 26, 15, 0.08);
+      --max: 1380px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+      line-height:1.75;
+      background:
+        linear-gradient(rgba(255,255,255,0.14), rgba(255,255,255,0.14)),
+        radial-gradient(circle at top left, rgba(125,92,63,0.10), transparent 38%),
+        linear-gradient(to bottom, #eee6db, #f1ece3 22%, #f4efe8 100%);
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .page{
+      width:min(calc(100% - 28px), var(--max));
+      margin:0 auto;
+      padding:28px 0 72px;
+    }
+
+    .hero{
+      border:1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(125,92,63,0.08), rgba(125,92,63,0) 42%),
+        var(--paper);
+      box-shadow:var(--shadow);
+      padding:32px 28px 26px;
+    }
+
+    .eyebrow,
+    .micro,
+    .section-anchor,
+    .tag,
+    .table-label{
+      font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+      letter-spacing:0.08em;
+    }
+
+    .eyebrow{
+      margin:0 0 12px;
+      font-size:12px;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    h1,h2,h3,h4,p,ul,ol{
+      margin:0;
+    }
+
+    h1{
+      max-width:11ch;
+      font-family:"Noto Serif TC","Songti TC",serif;
+      font-size:clamp(2.2rem, 5vw, 4.4rem);
+      line-height:1.07;
+      letter-spacing:-0.03em;
+    }
+
+    .hero-summary{
+      margin-top:18px;
+      max-width:860px;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+
+    .hero-grid{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns:1.15fr 0.95fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .hero-note,
+    .hero-points{
+      border-top:2px solid var(--ink);
+      padding-top:14px;
+    }
+
+    .hero-note p{
+      color:var(--muted);
+    }
+
+    .hero-points ul{
+      padding-left:18px;
+    }
+
+    .hero-points li{
+      margin-top:8px;
+    }
+
+    .shell{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:280px minmax(0,1fr);
+      gap:24px;
+      align-items:start;
+    }
+
+    .rail{
+      position:sticky;
+      top:18px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .rail-card,
+    .section,
+    .level-band,
+    .timeline-item{
+      border:1px solid var(--line);
+      background:var(--paper);
+    }
+
+    .rail-card{
+      padding:16px 16px 14px;
+    }
+
+    .rail-card h3{
+      font-size:0.98rem;
+      line-height:1.35;
+      margin-bottom:10px;
+    }
+
+    .rail-card p{
+      color:var(--muted);
+      font-size:0.93rem;
+    }
+
+    .toc{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:12px;
+    }
+
+    .toc a{
+      display:block;
+      padding:9px 10px;
+      border:1px solid var(--line);
+      background:var(--paper-strong);
+      font-size:0.94rem;
+    }
+
+    .toc a:hover{
+      background:#efe7db;
+    }
+
+    .micro{
+      font-size:11px;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .content{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .section{
+      padding:24px 24px 22px;
+    }
+
+    .section-head{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:10px 16px;
+      align-items:flex-end;
+      margin-bottom:18px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .section-anchor{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+    }
+
+    h2{
+      font-family:"Noto Serif TC","Songti TC",serif;
+      font-size:clamp(1.55rem, 2vw, 2.3rem);
+      line-height:1.18;
+      letter-spacing:-0.02em;
+    }
+
+    .section-lead{
+      color:var(--muted);
+      max-width:720px;
+      margin-bottom:18px;
+    }
+
+    .strip{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .strip-item{
+      padding:14px 0 0;
+      border-top:2px solid var(--ink);
+    }
+
+    .strip-item h3{
+      font-size:1rem;
+      margin-bottom:8px;
+    }
+
+    .strip-item p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .principles{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px 18px;
+    }
+
+    .principle{
+      padding:14px 0 0;
+      border-top:2px solid var(--ink);
+    }
+
+    .principle h3{
+      font-size:1rem;
+      margin-bottom:8px;
+    }
+
+    .principle p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .system-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .system-card{
+      padding:16px 16px 14px;
+      background:var(--paper-strong);
+      border:1px solid var(--line);
+    }
+
+    .system-card h3{
+      font-size:1.05rem;
+      margin-bottom:10px;
+    }
+
+    .system-card p{
+      color:var(--muted);
+      font-size:0.95rem;
+      margin-bottom:10px;
+    }
+
+    .system-card ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .system-card li{
+      margin-top:7px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:0.95rem;
+    }
+
+    th,td{
+      padding:12px 10px;
+      text-align:left;
+      vertical-align:top;
+      border-bottom:1px solid var(--line);
+    }
+
+    th{
+      font-size:11px;
+      text-transform:uppercase;
+      color:var(--muted);
+      letter-spacing:0.08em;
+      background:var(--paper-strong);
+    }
+
+    .level-stack{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .level-band{
+      padding:18px 18px 16px;
+    }
+
+    .level-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+      margin-bottom:12px;
+      padding-bottom:12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .level-top h3{
+      font-size:1.2rem;
+      line-height:1.2;
+    }
+
+    .level-sub{
+      color:var(--muted);
+      font-size:0.95rem;
+      margin-top:4px;
+    }
+
+    .tag{
+      font-size:11px;
+      text-transform:uppercase;
+      padding:4px 7px;
+      border:1px solid var(--line);
+      background:var(--paper-strong);
+      white-space:nowrap;
+    }
+
+    .level-grid{
+      display:grid;
+      grid-template-columns:1.15fr 1fr;
+      gap:18px;
+    }
+
+    .level-grid h4{
+      font-size:0.95rem;
+      margin-bottom:8px;
+    }
+
+    .level-grid p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .level-grid ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .level-grid li{
+      margin-top:7px;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .timeline-item{
+      padding:16px 16px 14px;
+    }
+
+    .timeline-item h3{
+      font-size:1.05rem;
+      margin-bottom:8px;
+    }
+
+    .timeline-item p{
+      color:var(--muted);
+      font-size:0.95rem;
+      margin-bottom:10px;
+    }
+
+    .timeline-item ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .timeline-item li{
+      margin-top:7px;
+    }
+
+    .accent-note,
+    .warning-note{
+      margin-top:16px;
+      padding:14px 15px;
+      border-left:3px solid var(--accent);
+      background:var(--accent-soft);
+    }
+
+    .warning-note{
+      border-left-color:var(--warn);
+      background:#f4e4d7;
+    }
+
+    .accent-note p,
+    .warning-note p{
+      color:#4b4036;
+    }
+
+    .persona-flow{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .persona-box{
+      padding:16px 14px 14px;
+      border:1px solid var(--line);
+      background:var(--paper-strong);
+    }
+
+    .persona-box h3{
+      font-size:1rem;
+      margin-bottom:8px;
+    }
+
+    .persona-box p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .do-not{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .do-card{
+      padding:16px 16px 14px;
+      border:1px solid var(--line);
+      background:var(--paper-strong);
+    }
+
+    .do-card h3{
+      font-size:1rem;
+      margin-bottom:10px;
+    }
+
+    .do-card ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .do-card li{
+      margin-top:8px;
+    }
+
+    .source-list{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px 20px;
+    }
+
+    .source-list a{
+      border-bottom:1px solid var(--line);
+      padding-bottom:10px;
+    }
+
+    .footer-note{
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+
+    @media (max-width:1100px){
+      .shell{
+        grid-template-columns:1fr;
+      }
+
+      .rail{
+        position:static;
+      }
+
+      .toc{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .timeline{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .persona-flow{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:860px){
+      .hero-grid,
+      .strip,
+      .principles,
+      .system-grid,
+      .level-grid,
+      .timeline,
+      .persona-flow,
+      .do-not,
+      .source-list{
+        grid-template-columns:1fr;
+      }
+
+      .toc{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:720px){
+      .page{
+        width:min(calc(100% - 16px), var(--max));
+        padding:16px 0 44px;
+      }
+
+      .hero,
+      .section,
+      .level-band,
+      .timeline-item{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+      .section-head{
+        padding-bottom:12px;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td{
+        display:block;
+      }
+
+      thead{
+        display:none;
+      }
+
+      tr{
+        border:1px solid var(--line);
+        margin-bottom:10px;
+        background:var(--paper-strong);
+      }
+
+      td{
+        border:none;
+        padding:10px 12px;
+      }
+
+      td::before{
+        content:attr(data-label);
+        display:block;
+        margin-bottom:4px;
+        font-size:11px;
+        color:var(--muted);
+        text-transform:uppercase;
+        letter-spacing:0.08em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" id="top">
+      <p class="eyebrow">UBO / Skool / Chiron Finalized</p>
+      <h1>一人事業升級地圖</h1>
+      <p class="hero-summary">
+        這不是把更多課塞進 Skool，而是把 UBO 的月費容器重新校準成一條清楚的升級路線：
+        先讓人有感，先讓人做出第一個可賣版本，再逐步解鎖更深的課程、工具、顧問與財務節點。
+      </p>
+      <div class="hero-grid">
+        <div class="hero-note">
+          <p class="micro">Chiron Verdict</p>
+          <p>
+            Skool 的新角色不是內容宇宙，也不是生意實戰班。
+            它是一張會跟著你升級的一人事業地圖。
+          </p>
+        </div>
+        <div class="hero-points">
+          <p class="micro">This Version Solves</p>
+          <ul>
+            <li>拆開 `價格階梯`、`進度等級`、`課程與工具解鎖` 三套系統</li>
+            <li>保留 Persona 個人化，但不讓主線課程裂成四套</li>
+            <li>把 48h、7 天、30 天、90 天旅程整理成可運營的節奏</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="shell">
+      <aside class="rail">
+        <section class="rail-card">
+          <p class="micro">Quick Read</p>
+          <h3>這份頁面適合誰看</h3>
+          <p>給 UBO 主理人、營運者、夥伴與核心顧問對齊同一版課綱與會員旅程。</p>
+        </section>
+        <section class="rail-card">
+          <p class="micro">Sections</p>
+          <nav class="toc" aria-label="頁內導覽">
+            <a href="#positioning">定位</a>
+            <a href="#principles">原則</a>
+            <a href="#systems">三套系統</a>
+            <a href="#levels">等級架構</a>
+            <a href="#curriculum">各級內容</a>
+            <a href="#journey">使用者旅程</a>
+            <a href="#persona">Persona 進法</a>
+            <a href="#boundaries">前台邊界</a>
+            <a href="#structure">版面建議</a>
+            <a href="#sources">依據與顧問</a>
+          </nav>
+        </section>
+        <section class="rail-card">
+          <p class="micro">One Sentence</p>
+          <h3>先做出第一個可賣版本，再沿著一人事業地圖逐層補強。</h3>
+        </section>
+      </aside>
+
+      <section class="content">
+        <article class="section" id="positioning">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">01 / Positioning</p>
+              <h2>Skool 的新定位</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            這一輪最重要的不是命名漂亮，而是把 `Skool 到底在交付什麼` 說清楚。
+            新版本只保留真正成立的角色，其他都往後移。
+          </p>
+          <div class="strip">
+            <div class="strip-item">
+              <h3>它不是</h3>
+              <p>什麼都有的內容宇宙，也不是一進來就端出所有 AI、顧問、財務與系統的全包承諾。</p>
+            </div>
+            <div class="strip-item">
+              <h3>它真正是</h3>
+              <p>一張會跟著會員升級的一人事業地圖，先幫他起步，再幫他看到下一層。</p>
+            </div>
+            <div class="strip-item">
+              <h3>它要完成</h3>
+              <p>前 48 小時有感、前 7-30 天做出版本並拿到市場訊號、之後逐步解鎖更深資源。</p>
+            </div>
+          </div>
+          <div class="accent-note">
+            <p><strong>凱龍定版：</strong>Skool 不是讓人進來學一堆，而是讓人先做出第一個可賣版本，再沿著一人事業地圖逐步升級。</p>
+          </div>
+        </article>
+
+        <article class="section" id="principles">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">02 / Principles</p>
+              <h2>底層原則</h2>
+            </div>
+          </div>
+          <div class="principles">
+            <div class="principle">
+              <h3>清晰路徑大於大量內容</h3>
+              <p>每個等級只應該看到此刻最需要的內容與工具，不讓資訊量破壞行動。</p>
+            </div>
+            <div class="principle">
+              <h3>先做再懂</h3>
+              <p>先讓會員做出第一個版本，之後再回頭補底層邏輯與系統觀。</p>
+            </div>
+            <div class="principle">
+              <h3>價格與進度分離</h3>
+              <p>價格階梯回答買哪一層，進度等級回答他走到哪一層，不能混成一張圖。</p>
+            </div>
+            <div class="principle">
+              <h3>Persona 是推薦，不是分裂</h3>
+              <p>Persona 只負責入口分流與選修推薦，不把課程拆成四條平行世界。</p>
+            </div>
+            <div class="principle">
+              <h3>前台只講這一層能交付什麼</h3>
+              <p>不要把未來才會解鎖的顧問、財務、系統能力一次性講成前台 promise。</p>
+            </div>
+            <div class="principle">
+              <h3>升級感必須真實存在</h3>
+              <p>每一次 level 提升，都要對應到更明確的結果、更深的資源或更大的操作權限。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="section" id="systems">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">03 / Three Systems</p>
+              <h2>先分清楚三套系統</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            這三件事如果不拆開，Skool 很容易又回到「看起來很大，但實際很亂」的狀態。
+          </p>
+          <div class="system-grid">
+            <section class="system-card">
+              <h3>系統 A｜價格階梯</h3>
+              <p>回答會員現在買哪一層、月費與高價怎麼銜接，以及何時該升價與升級。</p>
+              <ul>
+                <li>創始會員 / 公開月費</li>
+                <li>implementation</li>
+                <li>scale / deployment</li>
+              </ul>
+            </section>
+            <section class="system-card">
+              <h3>系統 B｜會員進度等級</h3>
+              <p>回答這個人現在走到哪、這週該完成什麼、下一層門檻是什麼。</p>
+              <ul>
+                <li>48h 是否啟動</li>
+                <li>7 天是否做出第一版</li>
+                <li>30-90 天是否長出訊號與案例</li>
+              </ul>
+            </section>
+            <section class="system-card">
+              <h3>系統 C｜課程與工具解鎖</h3>
+              <p>回答各等級能看到哪些內容、哪些工具現在該開、哪些模組必須後移。</p>
+              <ul>
+                <li>課程主線</li>
+                <li>模板與工具</li>
+                <li>Persona 選修包</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+
+        <article class="section" id="levels">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">04 / Levels</p>
+              <h2>新的等級架構</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            凱龍建議保留兩層命名：`前台稱號` 給會員感受升級感，`後台狀態` 給營運團隊判讀進度。
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>前台稱號</th>
+                <th>後台狀態</th>
+                <th>這一層的核心任務</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Level">L0</td>
+                <td data-label="前台稱號">觀望者</td>
+                <td data-label="後台狀態">旁觀者</td>
+                <td data-label="這一層的核心任務">被內容吸引，決定要不要進場。</td>
+              </tr>
+              <tr>
+                <td data-label="Level">L1</td>
+                <td data-label="前台稱號">啟動者</td>
+                <td data-label="後台狀態">啟動者</td>
+                <td data-label="這一層的核心任務">快速有感，知道自己的起步點。</td>
+              </tr>
+              <tr>
+                <td data-label="Level">L2</td>
+                <td data-label="前台稱號">創造者</td>
+                <td data-label="後台狀態">建構者</td>
+                <td data-label="這一層的核心任務">做出第一個可賣版本。</td>
+              </tr>
+              <tr>
+                <td data-label="Level">L3</td>
+                <td data-label="前台稱號">解鎖者</td>
+                <td data-label="後台狀態">測試者</td>
+                <td data-label="這一層的核心任務">把版本丟去市場，並開始理解底層邏輯。</td>
+              </tr>
+              <tr>
+                <td data-label="Level">L4</td>
+                <td data-label="前台稱號">實戰者</td>
+                <td data-label="後台狀態">訊號者</td>
+                <td data-label="這一層的核心任務">把初步市場反應變成案例與迭代。</td>
+              </tr>
+              <tr>
+                <td data-label="Level">L5</td>
+                <td data-label="前台稱號">專精者</td>
+                <td data-label="後台狀態">升級候選</td>
+                <td data-label="這一層的核心任務">選一條更深的能力線，開始系統化。</td>
+              </tr>
+              <tr>
+                <td data-label="Level">L6</td>
+                <td data-label="前台稱號">導航員</td>
+                <td data-label="後台狀態">放大者</td>
+                <td data-label="這一層的核心任務">從個人成果走向系統、團隊與放大。</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="section" id="curriculum">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">05 / Curriculum & Unlocks</p>
+              <h2>每個等級會拿到什麼</h2>
+            </div>
+          </div>
+          <div class="level-stack">
+            <section class="level-band">
+              <div class="level-top">
+                <div>
+                  <h3>L1 啟動者</h3>
+                  <p class="level-sub">先有感，不先上很多課。</p>
+                </div>
+                <span class="tag">Onboarding + Wow</span>
+              </div>
+              <div class="level-grid">
+                <div>
+                  <h4>會員會拿到</h4>
+                  <ul>
+                    <li>Welcome / Start Here</li>
+                    <li>社群地圖</li>
+                    <li>Persona 辨識問卷</li>
+                    <li>個人化 Day 1 體驗一份</li>
+                    <li>48h checklist</li>
+                    <li>一份可分享的社群素材</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>這一層要解的感受</h4>
+                  <p>我不是沒料，只是以前沒有人幫我整理。這裡不是內容庫，而是一個能幫我先走出起點的地方。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="level-band">
+              <div class="level-top">
+                <div>
+                  <h3>L2 創造者</h3>
+                  <p class="level-sub">做出第一個可賣版本。</p>
+                </div>
+                <span class="tag">First Sellable Version</span>
+              </div>
+              <div class="level-grid">
+                <div>
+                  <h4>會員會拿到</h4>
+                  <ul>
+                    <li>第一個可賣版本 Sprint</li>
+                    <li>版本盤點與切口整理</li>
+                    <li>標題 / 對象 / 價值主張 / CTA 模板</li>
+                    <li>攻略包或一頁式模板</li>
+                    <li>輪播圖生成器</li>
+                    <li>AI 擴充內容與首版頁面生成</li>
+                    <li>基礎名單承接機制</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>前台建議用語</h4>
+                  <p>`定位診斷卡` 往後台留，前台改成 `起步盤點`、`可賣亮點卡`、`首發版本方向`、`首版骨架`。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="level-band">
+              <div class="level-top">
+                <div>
+                  <h3>L3 解鎖者</h3>
+                  <p class="level-sub">做過之後，開始懂為什麼。</p>
+                </div>
+                <span class="tag">Market Test + Core Theory</span>
+              </div>
+              <div class="level-grid">
+                <div>
+                  <h4>會員會拿到</h4>
+                  <ul>
+                    <li>7 天核心課程</li>
+                    <li>三大板塊總論：事業 / 關係 / 健康</li>
+                    <li>事業主線：專業 -> 生意 -> 財富</li>
+                    <li>AI 數位分身</li>
+                    <li>個人知識庫引擎</li>
+                    <li>CRM 基礎版</li>
+                    <li>市場測試任務與回報模板</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>這一層的價值</h4>
+                  <p>不是一次把所有理論講完，而是讓會員在做過第一版之後，開始理解商業模式、信任、成交與長線結構。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="level-band">
+              <div class="level-top">
+                <div>
+                  <h3>L4 實戰者</h3>
+                  <p class="level-sub">把初步市場回應變成穩定訊號。</p>
+                </div>
+                <span class="tag">Signals + Electives</span>
+              </div>
+              <div class="level-grid">
+                <div>
+                  <h4>會員會拿到</h4>
+                  <ul>
+                    <li>進階技能樹</li>
+                    <li>Persona 專屬選修包</li>
+                    <li>LINE Bot 串接</li>
+                    <li>商業分析組</li>
+                    <li>Proof Wall 參與權</li>
+                    <li>每月回顧與下一步建議</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Persona 選修原則</h4>
+                  <p>Boss 走企業 AI 轉型包；Artisan 走手藝人數位加盟包；Builder 走創造者工具箱；Explorer 不做獨立包，回到主線後再轉入其他方向。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="level-band">
+              <div class="level-top">
+                <div>
+                  <h3>L5 專精者</h3>
+                  <p class="level-sub">把能力做成自己的系統。</p>
+                </div>
+                <span class="tag">Specialization</span>
+              </div>
+              <div class="level-grid">
+                <div>
+                  <h4>會員會拿到</h4>
+                  <ul>
+                    <li>完整天賦樹</li>
+                    <li>Skill Chat（全 Agent）</li>
+                    <li>Skill 開發權</li>
+                    <li>更深的顧問與工作流整合</li>
+                    <li>implementation 適配檢視</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>這一層的重點</h4>
+                  <p>不是再多學幾招，而是把已經跑出來的東西整理成可複製的方法與系統。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="level-band">
+              <div class="level-top">
+                <div>
+                  <h3>L6 導航員</h3>
+                  <p class="level-sub">從個人成果走向系統、團隊與放大。</p>
+                </div>
+                <span class="tag">Scale + Deployment</span>
+              </div>
+              <div class="level-grid">
+                <div>
+                  <h4>會員會拿到</h4>
+                  <ul>
+                    <li>Agent 自訂權</li>
+                    <li>白牌與授權能力</li>
+                    <li>導師面板</li>
+                    <li>社群共建權限</li>
+                    <li>放大與部署視角</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>這一層的結果</h4>
+                  <p>會員開始經營的，不再只是單一作品，而是一個可以部署、協作與複製的資產體系。</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <article class="section" id="journey">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">06 / Journey</p>
+              <h2>參與者使用者旅程</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            Skool 不只是放內容的地方，而是一段有節奏的旅程。這裡最值得保留的，是 `48h 啟動 -> 7 天第一版 -> 30 天案例 -> 90 天升級判斷` 這條骨架。
+          </p>
+          <div class="timeline">
+            <section class="timeline-item">
+              <h3>前 48 小時</h3>
+              <p>先被整理清楚，不先看很多內容。</p>
+              <ul>
+                <li>Welcome / Start Here</li>
+                <li>Persona 問卷</li>
+                <li>個人化 Day 1 體驗</li>
+                <li>48h checklist</li>
+              </ul>
+            </section>
+            <section class="timeline-item">
+              <h3>前 7 天</h3>
+              <p>先把第一版做出來，並做第一次對外測試。</p>
+              <ul>
+                <li>Build Sprint</li>
+                <li>首版頁面 / 攻略包</li>
+                <li>CTA 與承接點</li>
+                <li>第一次測試回報</li>
+              </ul>
+            </section>
+            <section class="timeline-item">
+              <h3>前 30 天</h3>
+              <p>把成果、進度與訊號累積成續費理由。</p>
+              <ul>
+                <li>每週固定 rhythm</li>
+                <li>Proof Wall</li>
+                <li>進度回報</li>
+                <li>案例資料提交</li>
+              </ul>
+            </section>
+            <section class="timeline-item">
+              <h3>前 90 天</h3>
+              <p>進入選修、重估 Persona，並判斷更深升級。</p>
+              <ul>
+                <li>Persona 重新評估</li>
+                <li>進階技能樹推薦</li>
+                <li>implementation 適配</li>
+                <li>下一階段放大點</li>
+              </ul>
+            </section>
+          </div>
+          <div class="accent-note">
+            <p><strong>旅程強點：</strong>這條路徑的價值不在內容多，而在於它把 activation、proof、retention 與 upgrade 串成一條能被營運的節奏。</p>
+          </div>
+        </article>
+
+        <article class="section" id="persona">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">07 / Persona</p>
+              <h2>Persona 怎麼進來，但不讓課程分裂</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            凱龍定版的原則很單純：入口分流，主線統一，選修再分流，最後回歸統一。
+          </p>
+          <div class="persona-flow">
+            <section class="persona-box">
+              <h3>L1 入口分流</h3>
+              <p>Boss / Artisan / Explorer / Builder 四條起手式，只負責第一次 wow 與起步感。</p>
+            </section>
+            <section class="persona-box">
+              <h3>L2-L3 主線統一</h3>
+              <p>全員回到同一條課程主線：做出版本、理解事業邏輯、開始測市場。</p>
+            </section>
+            <section class="persona-box">
+              <h3>L4-L5 選修分流</h3>
+              <p>依 Persona 與行為數據調整推薦權重，但不變成四套獨立社群。</p>
+            </section>
+            <section class="persona-box">
+              <h3>L3 結束重估</h3>
+              <p>Persona 可以流動。它是推薦引擎，不是身分鎖定。</p>
+            </section>
+          </div>
+          <div class="warning-note">
+            <p><strong>重要邊界：</strong>Explorer 不需要獨立進階課程包。文件裡最穩的結論，是讓他先走主線，之後再轉入 Boss / Artisan / Builder 路徑。</p>
+          </div>
+        </article>
+
+        <article class="section" id="boundaries">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">08 / Boundaries</p>
+              <h2>哪些東西不能過早承諾</h2>
+            </div>
+          </div>
+          <div class="do-not">
+            <section class="do-card">
+              <h3>L1-L3 不該當前台 promise 的內容</h3>
+              <ul>
+                <li>全 Agent Skill Chat</li>
+                <li>Skill 開發權</li>
+                <li>Agent 自訂權</li>
+                <li>白牌授權</li>
+                <li>導師面板</li>
+                <li>完整財務系統</li>
+                <li>全部顧問資源一次開放</li>
+              </ul>
+            </section>
+            <section class="do-card">
+              <h3>正確做法</h3>
+              <ul>
+                <li>先交付第一階段結果</li>
+                <li>再依 level 與標籤逐步解鎖</li>
+                <li>把升級感建立在真實可用的新資源上</li>
+                <li>讓前台語言只對應現在看得到的結果</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+
+        <article class="section" id="structure">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">09 / Structure</p>
+              <h2>Skool 內部版面建議</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            內部版面不需要太多層，重點是讓新會員知道先去哪、做完後去哪、下一層又在哪裡。
+          </p>
+          <div class="system-grid">
+            <section class="system-card">
+              <h3>Welcome / Start Here</h3>
+              <p>先做 Persona 問卷、拿到 Day 1 體驗、完成 48h checklist。</p>
+            </section>
+            <section class="system-card">
+              <h3>Build Sprint</h3>
+              <p>放本週唯一主題、模板、範例、公改與交付規格。</p>
+            </section>
+            <section class="system-card">
+              <h3>Core Map</h3>
+              <p>放 L3 的核心課程與一人事業主線，不把所有選修都堆進來。</p>
+            </section>
+            <section class="system-card">
+              <h3>Tools + Templates</h3>
+              <p>只顯示已解鎖工具，讓每個新模組出現都像打開新地圖。</p>
+            </section>
+            <section class="system-card">
+              <h3>Proof Wall</h3>
+              <p>放 before / after、案例、市場訊號，讓續費理由可見。</p>
+            </section>
+            <section class="system-card">
+              <h3>Next Stage</h3>
+              <p>只顯示當前適合的下一層，不提前把所有高價與高權限混在首頁。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="section" id="sources">
+          <div class="section-head">
+            <div>
+              <p class="section-anchor">10 / Sources & Advisors</p>
+              <h2>依據與顧問統整</h2>
+            </div>
+          </div>
+          <p class="section-lead">
+            這一版不是無中生有，而是由凱龍回收既有規格，並交給三路專家分別審核 `課程架構`、`使用者旅程`、`模組解鎖` 後整合而成。
+          </p>
+          <div class="strip">
+            <div class="strip-item">
+              <h3>課程架構顧問</h3>
+              <p>保留 `清晰路徑 > 大量內容` 與 `先做再懂`，並確立 L1-L3 主線、L4 之後才進技能樹。</p>
+            </div>
+            <div class="strip-item">
+              <h3>旅程顧問</h3>
+              <p>保留 `48h -> 7 天 -> 30 天 -> 90 天` 的骨架，並把 proof 與續費理由放回核心位置。</p>
+            </div>
+            <div class="strip-item">
+              <h3>解鎖顧問</h3>
+              <p>確認 Persona 是入口分流與推薦權重，不是四套課程；高階模組應後移解鎖。</p>
+            </div>
+          </div>
+          <div class="accent-note">
+            <p><strong>主要依據文件：</strong>UBO Skool 課綱 v2、創始會員主規格、營運包、冒險者平台統一架構、Persona 分流與 Jarvis 模組設計，以及命名與漏斗重整文件。</p>
+          </div>
+          <p class="footer-note" style="margin-top:16px">
+            整理日期：2026-04-15。總指揮：ChironAdvisor。
+            如果你是拿這頁做對內對焦，建議先看 `新的等級架構`、`每個等級會拿到什麼`、`參與者使用者旅程` 這三段。
+          </p>
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
