@@ -3,90 +3,77 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UBO Skool 課程與使用者旅程規劃</title>
-  <meta name="description" content="凱龍統整版：UBO Skool 作為一人事業升級地圖的課程分級、模組解鎖與參與者使用者旅程規劃。">
+  <title>UBO Skool 課程與旅程規劃 v2</title>
+  <meta name="description" content="凱龍統整版：重新整理 UBO Skool 的課程節奏、康樂富銜接、人生系統安裝、前 7/30/90 天路徑與帶人培育。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #f1ece3;
-      --paper: #fcfaf5;
-      --paper-strong: #f7f1e7;
-      --ink: #1f1912;
-      --muted: #6a6157;
-      --line: #d7ccbd;
-      --accent: #7d5c3f;
-      --accent-soft: #ede2d4;
-      --accent-strong: #523520;
-      --ok: #2f5c49;
-      --warn: #7d3f1e;
-      --shadow: 0 24px 60px rgba(41, 26, 15, 0.08);
-      --max: 1380px;
+      --bg:#f3eee5;
+      --paper:#fbf8f1;
+      --paper-strong:#f4ede2;
+      --ink:#1f1913;
+      --muted:#6c6257;
+      --line:#d8cdbf;
+      --accent:#7d5a3f;
+      --accent-soft:#ecdfd2;
+      --warn:#8a4521;
+      --max:1380px;
+      --shadow:0 22px 48px rgba(42,27,14,0.08);
     }
 
     *{box-sizing:border-box}
-
-    html{
-      scroll-behavior:smooth;
-    }
-
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       color:var(--ink);
       font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-      line-height:1.75;
+      line-height:1.78;
       background:
-        linear-gradient(rgba(255,255,255,0.14), rgba(255,255,255,0.14)),
-        radial-gradient(circle at top left, rgba(125,92,63,0.10), transparent 38%),
-        linear-gradient(to bottom, #eee6db, #f1ece3 22%, #f4efe8 100%);
+        linear-gradient(rgba(255,255,255,0.12), rgba(255,255,255,0.12)),
+        radial-gradient(circle at top left, rgba(125,90,63,0.1), transparent 36%),
+        linear-gradient(to bottom, #efe7dc 0%, #f3eee5 28%, #f7f2eb 100%);
     }
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
+    a{color:inherit;text-decoration:none}
+    h1,h2,h3,h4,p,ul,ol{margin:0}
 
     .page{
       width:min(calc(100% - 28px), var(--max));
       margin:0 auto;
-      padding:28px 0 72px;
+      padding:24px 0 72px;
     }
 
     .hero{
+      padding:34px 30px 28px;
       border:1px solid var(--line);
       background:
-        linear-gradient(135deg, rgba(125,92,63,0.08), rgba(125,92,63,0) 42%),
+        linear-gradient(140deg, rgba(125,90,63,0.08), rgba(125,90,63,0) 46%),
         var(--paper);
       box-shadow:var(--shadow);
-      padding:32px 28px 26px;
     }
 
     .eyebrow,
     .micro,
-    .section-anchor,
-    .tag,
-    .table-label{
+    .anchor,
+    .tag{
       font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
       letter-spacing:0.08em;
     }
 
     .eyebrow{
-      margin:0 0 12px;
       font-size:12px;
       text-transform:uppercase;
       color:var(--muted);
-    }
-
-    h1,h2,h3,h4,p,ul,ol{
-      margin:0;
+      margin-bottom:12px;
     }
 
     h1{
-      max-width:11ch;
+      max-width:10ch;
       font-family:"Noto Serif TC","Songti TC",serif;
-      font-size:clamp(2.2rem, 5vw, 4.4rem);
-      line-height:1.07;
+      font-size:clamp(2.3rem, 5vw, 4.3rem);
+      line-height:1.08;
       letter-spacing:-0.03em;
     }
 
@@ -100,30 +87,27 @@
     .hero-grid{
       margin-top:26px;
       display:grid;
-      grid-template-columns:1.15fr 0.95fr;
+      grid-template-columns:1.05fr 0.95fr;
       gap:18px;
-      align-items:start;
     }
 
-    .hero-note,
-    .hero-points{
-      border-top:2px solid var(--ink);
+    .hero-box{
       padding-top:14px;
+      border-top:2px solid var(--ink);
     }
 
-    .hero-note p{
+    .hero-box p{
       color:var(--muted);
     }
 
-    .hero-points ul{
+    .hero-box ul{
+      margin:0;
       padding-left:18px;
     }
 
-    .hero-points li{
-      margin-top:8px;
-    }
+    .hero-box li{margin-top:8px}
 
-    .shell{
+    .layout{
       margin-top:20px;
       display:grid;
       grid-template-columns:280px minmax(0,1fr);
@@ -141,25 +125,24 @@
 
     .rail-card,
     .section,
-    .level-band,
-    .timeline-item{
+    .mini-card{
       border:1px solid var(--line);
       background:var(--paper);
     }
 
     .rail-card{
-      padding:16px 16px 14px;
+      padding:16px;
     }
 
     .rail-card h3{
-      font-size:0.98rem;
+      font-size:1rem;
       line-height:1.35;
       margin-bottom:10px;
     }
 
     .rail-card p{
       color:var(--muted);
-      font-size:0.93rem;
+      font-size:0.94rem;
     }
 
     .toc{
@@ -171,21 +154,13 @@
 
     .toc a{
       display:block;
-      padding:9px 10px;
+      padding:10px 11px;
       border:1px solid var(--line);
       background:var(--paper-strong);
       font-size:0.94rem;
     }
 
-    .toc a:hover{
-      background:#efe7db;
-    }
-
-    .micro{
-      font-size:11px;
-      text-transform:uppercase;
-      color:var(--muted);
-    }
+    .toc a:hover{background:#eee4d7}
 
     .content{
       display:flex;
@@ -201,104 +176,80 @@
       display:flex;
       flex-wrap:wrap;
       justify-content:space-between;
-      gap:10px 16px;
+      gap:12px 18px;
       align-items:flex-end;
       margin-bottom:18px;
       padding-bottom:14px;
       border-bottom:1px solid var(--line);
     }
 
-    .section-anchor{
+    .anchor{
       font-size:11px;
-      color:var(--muted);
       text-transform:uppercase;
+      color:var(--muted);
     }
 
     h2{
       font-family:"Noto Serif TC","Songti TC",serif;
-      font-size:clamp(1.55rem, 2vw, 2.3rem);
-      line-height:1.18;
+      font-size:clamp(1.55rem, 2vw, 2.25rem);
+      line-height:1.2;
       letter-spacing:-0.02em;
     }
 
-    .section-lead{
+    .lead{
       color:var(--muted);
-      max-width:720px;
+      max-width:760px;
       margin-bottom:18px;
     }
 
-    .strip{
+    .grid-3,
+    .grid-2,
+    .table-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
       gap:12px;
     }
 
-    .strip-item{
-      padding:14px 0 0;
-      border-top:2px solid var(--ink);
-    }
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-    .strip-item h3{
-      font-size:1rem;
-      margin-bottom:8px;
-    }
-
-    .strip-item p{
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .principles{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:12px 18px;
-    }
-
-    .principle{
-      padding:14px 0 0;
-      border-top:2px solid var(--ink);
-    }
-
-    .principle h3{
-      font-size:1rem;
-      margin-bottom:8px;
-    }
-
-    .principle p{
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .system-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .system-card{
+    .mini-card{
       padding:16px 16px 14px;
       background:var(--paper-strong);
-      border:1px solid var(--line);
     }
 
-    .system-card h3{
-      font-size:1.05rem;
-      margin-bottom:10px;
+    .mini-card h3{
+      font-size:1.02rem;
+      margin-bottom:8px;
     }
 
-    .system-card p{
+    .mini-card p{
       color:var(--muted);
       font-size:0.95rem;
-      margin-bottom:10px;
     }
 
-    .system-card ul{
+    .mini-card ul{
       margin:0;
       padding-left:18px;
     }
 
-    .system-card li{
-      margin-top:7px;
+    .mini-card li{margin-top:7px}
+
+    .note,
+    .warn{
+      margin-top:16px;
+      padding:14px 15px;
+      border-left:3px solid var(--accent);
+      background:var(--accent-soft);
+    }
+
+    .warn{
+      border-left-color:var(--warn);
+      background:#f3e1d5;
+    }
+
+    .note p,
+    .warn p{
+      color:#4e4137;
     }
 
     table{
@@ -322,266 +273,94 @@
       background:var(--paper-strong);
     }
 
-    .level-stack{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+    .tag{
+      display:inline-block;
+      font-size:11px;
+      text-transform:uppercase;
+      color:var(--muted);
+      padding:4px 8px;
+      border:1px solid var(--line);
+      background:var(--paper-strong);
     }
 
-    .level-band{
+    .phase{
       padding:18px 18px 16px;
+      border:1px solid var(--line);
+      background:var(--paper);
     }
 
-    .level-top{
+    .phase-top{
       display:flex;
       justify-content:space-between;
       gap:14px;
       align-items:flex-start;
-      margin-bottom:12px;
       padding-bottom:12px;
+      margin-bottom:12px;
       border-bottom:1px solid var(--line);
     }
 
-    .level-top h3{
-      font-size:1.2rem;
-      line-height:1.2;
+    .phase-top h3{
+      font-size:1.18rem;
+      line-height:1.22;
     }
 
-    .level-sub{
+    .phase-sub{
       color:var(--muted);
       font-size:0.95rem;
       margin-top:4px;
     }
 
-    .tag{
-      font-size:11px;
-      text-transform:uppercase;
-      padding:4px 7px;
-      border:1px solid var(--line);
-      background:var(--paper-strong);
-      white-space:nowrap;
-    }
-
-    .level-grid{
+    .phase-grid{
       display:grid;
-      grid-template-columns:1.15fr 1fr;
+      grid-template-columns:1.08fr 1fr;
       gap:18px;
     }
 
-    .level-grid h4{
-      font-size:0.95rem;
+    .phase-grid h4{
+      font-size:0.96rem;
       margin-bottom:8px;
     }
 
-    .level-grid p{
+    .phase-grid p{
       color:var(--muted);
       font-size:0.95rem;
     }
 
-    .level-grid ul{
+    .phase-grid ul{
       margin:0;
       padding-left:18px;
     }
 
-    .level-grid li{
-      margin-top:7px;
-    }
+    .phase-grid li{margin-top:7px}
 
-    .timeline{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:12px;
-    }
-
-    .timeline-item{
-      padding:16px 16px 14px;
-    }
-
-    .timeline-item h3{
-      font-size:1.05rem;
-      margin-bottom:8px;
-    }
-
-    .timeline-item p{
-      color:var(--muted);
-      font-size:0.95rem;
-      margin-bottom:10px;
-    }
-
-    .timeline-item ul{
-      margin:0;
-      padding-left:18px;
-    }
-
-    .timeline-item li{
-      margin-top:7px;
-    }
-
-    .accent-note,
-    .warning-note{
-      margin-top:16px;
-      padding:14px 15px;
-      border-left:3px solid var(--accent);
-      background:var(--accent-soft);
-    }
-
-    .warning-note{
-      border-left-color:var(--warn);
-      background:#f4e4d7;
-    }
-
-    .accent-note p,
-    .warning-note p{
-      color:#4b4036;
-    }
-
-    .persona-flow{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:12px;
-    }
-
-    .persona-box{
-      padding:16px 14px 14px;
-      border:1px solid var(--line);
-      background:var(--paper-strong);
-    }
-
-    .persona-box h3{
-      font-size:1rem;
-      margin-bottom:8px;
-    }
-
-    .persona-box p{
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .do-not{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-
-    .do-card{
-      padding:16px 16px 14px;
-      border:1px solid var(--line);
-      background:var(--paper-strong);
-    }
-
-    .do-card h3{
-      font-size:1rem;
-      margin-bottom:10px;
-    }
-
-    .do-card ul{
-      margin:0;
-      padding-left:18px;
-    }
-
-    .do-card li{
-      margin-top:8px;
-    }
-
-    .source-list{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px 20px;
-    }
-
-    .source-list a{
-      border-bottom:1px solid var(--line);
-      padding-bottom:10px;
-    }
-
-    .footer-note{
+    .footer{
       color:var(--muted);
       font-size:0.94rem;
     }
 
-    @media (max-width:1100px){
-      .shell{
-        grid-template-columns:1fr;
-      }
-
-      .rail{
-        position:static;
-      }
-
-      .toc{
-        display:grid;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-
-      .timeline{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-
-      .persona-flow{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
+    @media (max-width:1120px){
+      .layout{grid-template-columns:1fr}
+      .rail{position:static}
+      .toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
     }
 
     @media (max-width:860px){
       .hero-grid,
-      .strip,
-      .principles,
-      .system-grid,
-      .level-grid,
-      .timeline,
-      .persona-flow,
-      .do-not,
-      .source-list{
-        grid-template-columns:1fr;
-      }
-
+      .grid-3,
+      .grid-2,
+      .phase-grid,
       .toc{
         grid-template-columns:1fr;
       }
     }
 
     @media (max-width:720px){
-      .page{
-        width:min(calc(100% - 16px), var(--max));
-        padding:16px 0 44px;
-      }
-
-      .hero,
-      .section,
-      .level-band,
-      .timeline-item{
-        padding-left:16px;
-        padding-right:16px;
-      }
-
-      .section-head{
-        padding-bottom:12px;
-      }
-
-      table,
-      thead,
-      tbody,
-      tr,
-      th,
-      td{
-        display:block;
-      }
-
-      thead{
-        display:none;
-      }
-
-      tr{
-        border:1px solid var(--line);
-        margin-bottom:10px;
-        background:var(--paper-strong);
-      }
-
-      td{
-        border:none;
-        padding:10px 12px;
-      }
-
+      .page{width:min(calc(100% - 16px), var(--max));padding:16px 0 44px}
+      .hero,.section,.phase{padding-left:16px;padding-right:16px}
+      table,thead,tbody,tr,th,td{display:block}
+      thead{display:none}
+      tr{border:1px solid var(--line);margin-bottom:10px;background:var(--paper-strong)}
+      td{border:none;padding:10px 12px}
       td::before{
         content:attr(data-label);
         display:block;
@@ -596,595 +375,576 @@
 </head>
 <body>
   <main class="page">
-    <section class="hero" id="top">
-      <p class="eyebrow">UBO / Skool / Chiron Finalized</p>
-      <h1>一人事業升級地圖</h1>
+    <section class="hero">
+      <p class="eyebrow">UBO / Skool / 課程與旅程規劃 v2</p>
+      <h1>前七天就開始分流與升級</h1>
       <p class="hero-summary">
-        這不是把更多課塞進 Skool，而是把 UBO 的月費容器重新校準成一條清楚的升級路線：
-        先讓人有感，先讓人做出第一個可賣版本，再逐步解鎖更深的課程、工具、顧問與財務節點。
+        這一版不再把 Skool 當成單純的課程庫，而是重新排成一條前九十天的升級路線：
+        前面先讓人分享與邀請，中段開始開放進一步合作申請，適合的人在前七天內完成康樂富投入與人生系統安裝，後面再把人養成能帶人的小線頭。
       </p>
       <div class="hero-grid">
-        <div class="hero-note">
-          <p class="micro">Chiron Verdict</p>
-          <p>
-            Skool 的新角色不是內容宇宙，也不是生意實戰班。
-            它是一張會跟著你升級的一人事業地圖。
-          </p>
+        <div class="hero-box">
+          <p class="micro">凱龍這次的定版</p>
+          <p>等級 3 不再只是認知課程。等級 3 的後半段，就要開始做進一步合作的詢問、申請、投入與安裝。</p>
         </div>
-        <div class="hero-points">
-          <p class="micro">This Version Solves</p>
+        <div class="hero-box">
+          <p class="micro">這次主要改動</p>
           <ul>
-            <li>拆開 `價格階梯`、`進度等級`、`課程與工具解鎖` 三套系統</li>
-            <li>保留 Persona 個人化，但不讓主線課程裂成四套</li>
-            <li>把 48h、7 天、30 天、90 天旅程整理成可運營的節奏</li>
+            <li>把康樂富與人生系統提前接進等級 3 的後半段</li>
+            <li>把等級 4 改成帶人、複製、七口前哨</li>
+            <li>把英文與技術名詞改成容易閱讀的繁體中文</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <div class="shell">
+    <div class="layout">
       <aside class="rail">
         <section class="rail-card">
-          <p class="micro">Quick Read</p>
-          <h3>這份頁面適合誰看</h3>
-          <p>給 UBO 主理人、營運者、夥伴與核心顧問對齊同一版課綱與會員旅程。</p>
+          <p class="micro">快速說明</p>
+          <h3>這頁是什麼</h3>
+          <p>給你與核心夥伴對焦 Skool 課程、合作分流、康樂富與人生系統安裝、帶人培育的統整版。</p>
         </section>
         <section class="rail-card">
-          <p class="micro">Sections</p>
+          <p class="micro">頁內導覽</p>
           <nav class="toc" aria-label="頁內導覽">
-            <a href="#positioning">定位</a>
-            <a href="#principles">原則</a>
-            <a href="#systems">三套系統</a>
+            <a href="#summary">這次定版</a>
+            <a href="#language">語言統一</a>
             <a href="#levels">等級架構</a>
-            <a href="#curriculum">各級內容</a>
-            <a href="#journey">使用者旅程</a>
-            <a href="#persona">Persona 進法</a>
-            <a href="#boundaries">前台邊界</a>
-            <a href="#structure">版面建議</a>
-            <a href="#sources">依據與顧問</a>
+            <a href="#seven-days">前 7 天</a>
+            <a href="#level3">等級 3 課程</a>
+            <a href="#level4">等級 4 調整</a>
+            <a href="#thirty-days">前 30 天</a>
+            <a href="#ninety-days">前 90 天</a>
+            <a href="#layout-advice">Skool 版位安排</a>
+            <a href="#mindset">心態與角色轉變</a>
           </nav>
         </section>
         <section class="rail-card">
-          <p class="micro">One Sentence</p>
-          <h3>先做出第一個可賣版本，再沿著一人事業地圖逐層補強。</h3>
+          <p class="micro">一句話版本</p>
+          <h3>前七天就把該升級的人推進去，前三十天開始複製，前九十天養出能帶人的人。</h3>
         </section>
       </aside>
 
       <section class="content">
-        <article class="section" id="positioning">
+        <article class="section" id="summary">
           <div class="section-head">
             <div>
-              <p class="section-anchor">01 / Positioning</p>
-              <h2>Skool 的新定位</h2>
+              <p class="anchor">01 / 這次定版</p>
+              <h2>這一版到底改了什麼</h2>
             </div>
           </div>
-          <p class="section-lead">
-            這一輪最重要的不是命名漂亮，而是把 `Skool 到底在交付什麼` 說清楚。
-            新版本只保留真正成立的角色，其他都往後移。
-          </p>
-          <div class="strip">
-            <div class="strip-item">
-              <h3>它不是</h3>
-              <p>什麼都有的內容宇宙，也不是一進來就端出所有 AI、顧問、財務與系統的全包承諾。</p>
-            </div>
-            <div class="strip-item">
-              <h3>它真正是</h3>
-              <p>一張會跟著會員升級的一人事業地圖，先幫他起步，再幫他看到下一層。</p>
-            </div>
-            <div class="strip-item">
-              <h3>它要完成</h3>
-              <p>前 48 小時有感、前 7-30 天做出版本並拿到市場訊號、之後逐步解鎖更深資源。</p>
-            </div>
+          <div class="grid-3">
+            <section class="mini-card">
+              <h3>等級 3 往前推</h3>
+              <p>不再等到課程結束後才談進一步合作，而是在七天課程的後半段正式開申請窗口。</p>
+            </section>
+            <section class="mini-card">
+              <h3>前 7 天就分流</h3>
+              <p>前面先讓成員分享、邀請、做出小成果；後面讓適合的人完成康樂富投入與人生系統安裝。</p>
+            </section>
+            <section class="mini-card">
+              <h3>等級 4 改成複製期</h3>
+              <p>從補技能，改成跟進、帶人、推升級、談七口，讓成員不只是自己做，而是開始複製。</p>
+            </section>
           </div>
-          <div class="accent-note">
-            <p><strong>凱龍定版：</strong>Skool 不是讓人進來學一堆，而是讓人先做出第一個可賣版本，再沿著一人事業地圖逐步升級。</p>
+          <div class="note">
+            <p><strong>這次的核心：</strong>Skool 不只是讓人學會，而是要把人推到更深的合作、使用、複製與帶人。</p>
           </div>
         </article>
 
-        <article class="section" id="principles">
+        <article class="section" id="language">
           <div class="section-head">
             <div>
-              <p class="section-anchor">02 / Principles</p>
-              <h2>底層原則</h2>
+              <p class="anchor">02 / 語言統一</p>
+              <h2>這一版改掉的詞</h2>
             </div>
           </div>
-          <div class="principles">
-            <div class="principle">
-              <h3>清晰路徑大於大量內容</h3>
-              <p>每個等級只應該看到此刻最需要的內容與工具，不讓資訊量破壞行動。</p>
-            </div>
-            <div class="principle">
-              <h3>先做再懂</h3>
-              <p>先讓會員做出第一個版本，之後再回頭補底層邏輯與系統觀。</p>
-            </div>
-            <div class="principle">
-              <h3>價格與進度分離</h3>
-              <p>價格階梯回答買哪一層，進度等級回答他走到哪一層，不能混成一張圖。</p>
-            </div>
-            <div class="principle">
-              <h3>Persona 是推薦，不是分裂</h3>
-              <p>Persona 只負責入口分流與選修推薦，不把課程拆成四條平行世界。</p>
-            </div>
-            <div class="principle">
-              <h3>前台只講這一層能交付什麼</h3>
-              <p>不要把未來才會解鎖的顧問、財務、系統能力一次性講成前台 promise。</p>
-            </div>
-            <div class="principle">
-              <h3>升級感必須真實存在</h3>
-              <p>每一次 level 提升，都要對應到更明確的結果、更深的資源或更大的操作權限。</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="section" id="systems">
-          <div class="section-head">
-            <div>
-              <p class="section-anchor">03 / Three Systems</p>
-              <h2>先分清楚三套系統</h2>
-            </div>
-          </div>
-          <p class="section-lead">
-            這三件事如果不拆開，Skool 很容易又回到「看起來很大，但實際很亂」的狀態。
-          </p>
-          <div class="system-grid">
-            <section class="system-card">
-              <h3>系統 A｜價格階梯</h3>
-              <p>回答會員現在買哪一層、月費與高價怎麼銜接，以及何時該升價與升級。</p>
-              <ul>
-                <li>創始會員 / 公開月費</li>
-                <li>implementation</li>
-                <li>scale / deployment</li>
-              </ul>
-            </section>
-            <section class="system-card">
-              <h3>系統 B｜會員進度等級</h3>
-              <p>回答這個人現在走到哪、這週該完成什麼、下一層門檻是什麼。</p>
-              <ul>
-                <li>48h 是否啟動</li>
-                <li>7 天是否做出第一版</li>
-                <li>30-90 天是否長出訊號與案例</li>
-              </ul>
-            </section>
-            <section class="system-card">
-              <h3>系統 C｜課程與工具解鎖</h3>
-              <p>回答各等級能看到哪些內容、哪些工具現在該開、哪些模組必須後移。</p>
-              <ul>
-                <li>課程主線</li>
-                <li>模板與工具</li>
-                <li>Persona 選修包</li>
-              </ul>
-            </section>
+          <p class="lead">你提醒得很準。上一版用了太多英文和技術詞。這一版把公開閱讀時看得到的詞幾乎都改成繁體中文。</p>
+          <table>
+            <thead>
+              <tr>
+                <th>原本</th>
+                <th>這一版改成</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="原本">Persona</td>
+                <td data-label="這一版改成">角色分流</td>
+              </tr>
+              <tr>
+                <td data-label="原本">Build Sprint</td>
+                <td data-label="這一版改成">本週實作任務</td>
+              </tr>
+              <tr>
+                <td data-label="原本">Proof Wall</td>
+                <td data-label="這一版改成">成果牆</td>
+              </tr>
+              <tr>
+                <td data-label="原本">Next Stage</td>
+                <td data-label="這一版改成">下一步</td>
+              </tr>
+              <tr>
+                <td data-label="原本">Skill Chat / Workflow / Agent 組</td>
+                <td data-label="這一版改成">技能對話 / 流程模組 / 顧問組</td>
+              </tr>
+              <tr>
+                <td data-label="原本">Jarvis</td>
+                <td data-label="這一版改成">人生系統</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="warn">
+            <p><strong>例外保留：</strong> `Line Bot` 保留原名。`等級 1、等級 2、等級 3` 也保留，因為你自己就在用這套說法。</p>
           </div>
         </article>
 
         <article class="section" id="levels">
           <div class="section-head">
             <div>
-              <p class="section-anchor">04 / Levels</p>
-              <h2>新的等級架構</h2>
+              <p class="anchor">03 / 等級架構</p>
+              <h2>重新定義後的等級</h2>
             </div>
           </div>
-          <p class="section-lead">
-            凱龍建議保留兩層命名：`前台稱號` 給會員感受升級感，`後台狀態` 給營運團隊判讀進度。
-          </p>
           <table>
             <thead>
               <tr>
-                <th>Level</th>
+                <th>等級</th>
                 <th>前台稱號</th>
-                <th>後台狀態</th>
-                <th>這一層的核心任務</th>
+                <th>這一層的任務</th>
+                <th>和康樂富 / 人生系統的關係</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td data-label="Level">L0</td>
+                <td data-label="等級">等級 0</td>
                 <td data-label="前台稱號">觀望者</td>
-                <td data-label="後台狀態">旁觀者</td>
-                <td data-label="這一層的核心任務">被內容吸引，決定要不要進場。</td>
+                <td data-label="這一層的任務">被內容打動，決定要不要進來。</td>
+                <td data-label="和康樂富 / 人生系統的關係">還不談。</td>
               </tr>
               <tr>
-                <td data-label="Level">L1</td>
+                <td data-label="等級">等級 1</td>
                 <td data-label="前台稱號">啟動者</td>
-                <td data-label="後台狀態">啟動者</td>
-                <td data-label="這一層的核心任務">快速有感，知道自己的起步點。</td>
+                <td data-label="這一層的任務">被看懂、被整理、拿到第一份可分享素材。</td>
+                <td data-label="和康樂富 / 人生系統的關係">先建立認同，不談投入。</td>
               </tr>
               <tr>
-                <td data-label="Level">L2</td>
+                <td data-label="等級">等級 2</td>
                 <td data-label="前台稱號">創造者</td>
-                <td data-label="後台狀態">建構者</td>
-                <td data-label="這一層的核心任務">做出第一個可賣版本。</td>
+                <td data-label="這一層的任務">做出第一個可分享、可邀請、可展示的版本。</td>
+                <td data-label="和康樂富 / 人生系統的關係">開始鋪路，但不急著成交。</td>
               </tr>
               <tr>
-                <td data-label="Level">L3</td>
+                <td data-label="等級">等級 3</td>
                 <td data-label="前台稱號">解鎖者</td>
-                <td data-label="後台狀態">測試者</td>
-                <td data-label="這一層的核心任務">把版本丟去市場，並開始理解底層邏輯。</td>
+                <td data-label="這一層的任務">七天核心課程 + 後半段進一步合作申請。</td>
+                <td data-label="和康樂富 / 人生系統的關係">適合者在這裡完成 45,000 與人生系統安裝。</td>
               </tr>
               <tr>
-                <td data-label="Level">L4</td>
+                <td data-label="等級">等級 4</td>
                 <td data-label="前台稱號">實戰者</td>
-                <td data-label="後台狀態">訊號者</td>
-                <td data-label="這一層的核心任務">把初步市場反應變成案例與迭代。</td>
+                <td data-label="這一層的任務">跟進、帶人、複製、推升級、談七口。</td>
+                <td data-label="和康樂富 / 人生系統的關係">正式開始複製康樂富與人生系統路徑。</td>
               </tr>
               <tr>
-                <td data-label="Level">L5</td>
+                <td data-label="等級">等級 5</td>
                 <td data-label="前台稱號">專精者</td>
-                <td data-label="後台狀態">升級候選</td>
-                <td data-label="這一層的核心任務">選一條更深的能力線，開始系統化。</td>
+                <td data-label="這一層的任務">開始穩定帶一小組人。</td>
+                <td data-label="和康樂富 / 人生系統的關係">進入更深的組織與七口思維。</td>
               </tr>
               <tr>
-                <td data-label="Level">L6</td>
+                <td data-label="等級">等級 6</td>
                 <td data-label="前台稱號">導航員</td>
-                <td data-label="後台狀態">放大者</td>
-                <td data-label="這一層的核心任務">從個人成果走向系統、團隊與放大。</td>
+                <td data-label="這一層的任務">分享、教課、培育、共建。</td>
+                <td data-label="和康樂富 / 人生系統的關係">從自己做，進到帶人做。</td>
               </tr>
             </tbody>
           </table>
         </article>
 
-        <article class="section" id="curriculum">
+        <article class="section" id="seven-days">
           <div class="section-head">
             <div>
-              <p class="section-anchor">05 / Curriculum & Unlocks</p>
-              <h2>每個等級會拿到什麼</h2>
+              <p class="anchor">04 / 前 7 天</p>
+              <h2>前 7 天要發生什麼</h2>
             </div>
           </div>
-          <div class="level-stack">
-            <section class="level-band">
-              <div class="level-top">
-                <div>
-                  <h3>L1 啟動者</h3>
-                  <p class="level-sub">先有感，不先上很多課。</p>
-                </div>
-                <span class="tag">Onboarding + Wow</span>
-              </div>
-              <div class="level-grid">
-                <div>
-                  <h4>會員會拿到</h4>
-                  <ul>
-                    <li>Welcome / Start Here</li>
-                    <li>社群地圖</li>
-                    <li>Persona 辨識問卷</li>
-                    <li>個人化 Day 1 體驗一份</li>
-                    <li>48h checklist</li>
-                    <li>一份可分享的社群素材</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>這一層要解的感受</h4>
-                  <p>我不是沒料，只是以前沒有人幫我整理。這裡不是內容庫，而是一個能幫我先走出起點的地方。</p>
-                </div>
-              </div>
-            </section>
+          <p class="lead">
+            這一段不再只是「上完一輪課」。它有三個任務：
+            先讓會員分享與邀請，再讓適合的人進入康樂富與人生系統，最後把 30 天的節奏接上。
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>天數</th>
+                <th>主題</th>
+                <th>成員要做什麼</th>
+                <th>康樂富 / 人生系統相關歷程</th>
+                <th>心態與角色轉變</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="天數">第 1 天</td>
+                <td data-label="主題">三大板塊總論</td>
+                <td data-label="成員要做什麼">完成自評，發第一則「我正在調整什麼」的分享。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">先建立認同，不談方案。</td>
+                <td data-label="心態與角色轉變">我開始看見自己哪裡失衡。</td>
+              </tr>
+              <tr>
+                <td data-label="天數">第 2 天</td>
+                <td data-label="主題">錢從哪裡來</td>
+                <td data-label="成員要做什麼">發一則自己的金錢與時間反思，並邀請 1 人進 Skool 了解。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">還不談成交，先把人帶進來。</td>
+                <td data-label="心態與角色轉變">我開始敢開口分享。</td>
+              </tr>
+              <tr>
+                <td data-label="天數">第 3 天</td>
+                <td data-label="主題">商業模式真相</td>
+                <td data-label="成員要做什麼">做一則自己的小輸出，再次邀請 1 人進來。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">埋下「已驗證結構」的概念。</td>
+                <td data-label="心態與角色轉變">我不只是學，我開始試著接人。</td>
+              </tr>
+              <tr>
+                <td data-label="天數">第 4 天</td>
+                <td data-label="主題">健康是根</td>
+                <td data-label="成員要做什麼">理解健康不是附屬品，開始接受進一步合作的合理性。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">正式帶出「健康底層配置」與康樂富的意義。</td>
+                <td data-label="心態與角色轉變">我開始知道，這不是硬賣，而是結構延伸。</td>
+              </tr>
+              <tr>
+                <td data-label="天數">第 5 天</td>
+                <td data-label="主題">信任、關係、成交</td>
+                <td data-label="成員要做什麼">和適合的人做 1 對 1 深聊。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">開放 45,000 路線與合作申請。</td>
+                <td data-label="心態與角色轉變">我開始做選擇，不只是聽懂。</td>
+              </tr>
+              <tr>
+                <td data-label="天數">第 6 天</td>
+                <td data-label="主題">進一步合作說明</td>
+                <td data-label="成員要做什麼">完成申請、付款、確認方案與後續安排。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">康樂富、45,000、包套人生系統正式啟動。</td>
+                <td data-label="心態與角色轉變">我從一般會員，進入進一步合作夥伴。</td>
+              </tr>
+              <tr>
+                <td data-label="天數">第 7 天</td>
+                <td data-label="主題">啟動日</td>
+                <td data-label="成員要做什麼">完成安裝、確認 30 天任務，開始真正使用。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">完成人生系統安裝與啟動。</td>
+                <td data-label="心態與角色轉變">我不是來旁觀，我已經投入這條路。</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="note">
+            <p><strong>重要補充：</strong>不是每個人都要在第 7 天前進 45,000，但該進的人，不能再拖到很後面才談。如果一開始需求就很明確，也可以直接進深聊與申請。</p>
+          </div>
+        </article>
 
-            <section class="level-band">
-              <div class="level-top">
-                <div>
-                  <h3>L2 創造者</h3>
-                  <p class="level-sub">做出第一個可賣版本。</p>
-                </div>
-                <span class="tag">First Sellable Version</span>
-              </div>
-              <div class="level-grid">
-                <div>
-                  <h4>會員會拿到</h4>
-                  <ul>
-                    <li>第一個可賣版本 Sprint</li>
-                    <li>版本盤點與切口整理</li>
-                    <li>標題 / 對象 / 價值主張 / CTA 模板</li>
-                    <li>攻略包或一頁式模板</li>
-                    <li>輪播圖生成器</li>
-                    <li>AI 擴充內容與首版頁面生成</li>
-                    <li>基礎名單承接機制</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>前台建議用語</h4>
-                  <p>`定位診斷卡` 往後台留，前台改成 `起步盤點`、`可賣亮點卡`、`首發版本方向`、`首版骨架`。</p>
-                </div>
-              </div>
+        <article class="section" id="level3">
+          <div class="section-head">
+            <div>
+              <p class="anchor">05 / 等級 3 課程</p>
+              <h2>等級 3 的七天核心課程，要怎麼重排</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <section class="mini-card">
+              <h3>前半段：先讓人有認知，也有動作</h3>
+              <ul>
+                <li>現代困境與三大板塊</li>
+                <li>錢從哪裡來</li>
+                <li>商業模式的真相</li>
+                <li>每天都要有一則分享或邀請動作</li>
+              </ul>
             </section>
-
-            <section class="level-band">
-              <div class="level-top">
-                <div>
-                  <h3>L3 解鎖者</h3>
-                  <p class="level-sub">做過之後，開始懂為什麼。</p>
-                </div>
-                <span class="tag">Market Test + Core Theory</span>
-              </div>
-              <div class="level-grid">
-                <div>
-                  <h4>會員會拿到</h4>
-                  <ul>
-                    <li>7 天核心課程</li>
-                    <li>三大板塊總論：事業 / 關係 / 健康</li>
-                    <li>事業主線：專業 -> 生意 -> 財富</li>
-                    <li>AI 數位分身</li>
-                    <li>個人知識庫引擎</li>
-                    <li>CRM 基礎版</li>
-                    <li>市場測試任務與回報模板</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>這一層的價值</h4>
-                  <p>不是一次把所有理論講完，而是讓會員在做過第一版之後，開始理解商業模式、信任、成交與長線結構。</p>
-                </div>
-              </div>
+            <section class="mini-card">
+              <h3>後半段：正式開合作窗口</h3>
+              <ul>
+                <li>健康是根，帶出健康底層配置</li>
+                <li>信任、關係、成交</li>
+                <li>康樂富與人生系統說明</li>
+                <li>適合者完成投入與安裝</li>
+              </ul>
             </section>
-
-            <section class="level-band">
-              <div class="level-top">
-                <div>
-                  <h3>L4 實戰者</h3>
-                  <p class="level-sub">把初步市場回應變成穩定訊號。</p>
-                </div>
-                <span class="tag">Signals + Electives</span>
-              </div>
-              <div class="level-grid">
-                <div>
-                  <h4>會員會拿到</h4>
-                  <ul>
-                    <li>進階技能樹</li>
-                    <li>Persona 專屬選修包</li>
-                    <li>LINE Bot 串接</li>
-                    <li>商業分析組</li>
-                    <li>Proof Wall 參與權</li>
-                    <li>每月回顧與下一步建議</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>Persona 選修原則</h4>
-                  <p>Boss 走企業 AI 轉型包；Artisan 走手藝人數位加盟包；Builder 走創造者工具箱；Explorer 不做獨立包，回到主線後再轉入其他方向。</p>
-                </div>
-              </div>
+          </div>
+          <div class="warn">
+            <p><strong>這裡的重點不是突然插產品：</strong>而是先講「健康是根」，再講「如果根不穩，事業和關係撐不久」，最後才接到「所以這裡有健康底層配置與人生系統安裝」。</p>
+          </div>
+          <div class="grid-3" style="margin-top:14px">
+            <section class="mini-card">
+              <h3>不要講</h3>
+              <p>入會、直銷、下線、拉人。</p>
             </section>
-
-            <section class="level-band">
-              <div class="level-top">
-                <div>
-                  <h3>L5 專精者</h3>
-                  <p class="level-sub">把能力做成自己的系統。</p>
-                </div>
-                <span class="tag">Specialization</span>
-              </div>
-              <div class="level-grid">
-                <div>
-                  <h4>會員會拿到</h4>
-                  <ul>
-                    <li>完整天賦樹</li>
-                    <li>Skill Chat（全 Agent）</li>
-                    <li>Skill 開發權</li>
-                    <li>更深的顧問與工作流整合</li>
-                    <li>implementation 適配檢視</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>這一層的重點</h4>
-                  <p>不是再多學幾招，而是把已經跑出來的東西整理成可複製的方法與系統。</p>
-                </div>
-              </div>
+            <section class="mini-card">
+              <h3>要講</h3>
+              <p>健康底層配置、進一步合作、人生系統安裝、根基方案、資源節點。</p>
             </section>
-
-            <section class="level-band">
-              <div class="level-top">
-                <div>
-                  <h3>L6 導航員</h3>
-                  <p class="level-sub">從個人成果走向系統、團隊與放大。</p>
-                </div>
-                <span class="tag">Scale + Deployment</span>
-              </div>
-              <div class="level-grid">
-                <div>
-                  <h4>會員會拿到</h4>
-                  <ul>
-                    <li>Agent 自訂權</li>
-                    <li>白牌與授權能力</li>
-                    <li>導師面板</li>
-                    <li>社群共建權限</li>
-                    <li>放大與部署視角</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4>這一層的結果</h4>
-                  <p>會員開始經營的，不再只是單一作品，而是一個可以部署、協作與複製的資產體系。</p>
-                </div>
-              </div>
+            <section class="mini-card">
+              <h3>對外感受</h3>
+              <p>這不是跳題，而是從世界觀往具體配置自然落地。</p>
             </section>
           </div>
         </article>
 
-        <article class="section" id="journey">
+        <article class="section" id="level4">
           <div class="section-head">
             <div>
-              <p class="section-anchor">06 / Journey</p>
-              <h2>參與者使用者旅程</h2>
+              <p class="anchor">06 / 等級 4 調整</p>
+              <h2>等級 4 不再只是補技能</h2>
             </div>
           </div>
-          <p class="section-lead">
-            Skool 不只是放內容的地方，而是一段有節奏的旅程。這裡最值得保留的，是 `48h 啟動 -> 7 天第一版 -> 30 天案例 -> 90 天升級判斷` 這條骨架。
+          <p class="lead">上一版的等級 4 比較像技能補強。這一版改成正式的帶人實戰與複製期。</p>
+          <div class="phase">
+            <div class="phase-top">
+              <div>
+                <h3>等級 4：實戰者</h3>
+                <p class="phase-sub">跟進、帶人、複製、推升級、談七口。</p>
+              </div>
+              <span class="tag">帶人實戰期</span>
+            </div>
+            <div class="phase-grid">
+              <div>
+                <h4>這一層要做什麼</h4>
+                <ul>
+                  <li>跟進自己邀進來的人</li>
+                  <li>把適合的人推進康樂富與人生系統</li>
+                  <li>用人生系統持續產出內容、頁面、邀請素材</li>
+                  <li>至少協助 1 位自己邀進來的人完成升級</li>
+                  <li>開始和原本成員談七口計畫</li>
+                </ul>
+              </div>
+              <div>
+                <h4>這一層的內容模組</h4>
+                <ul>
+                  <li>跟進與成交整理</li>
+                  <li>人生系統深化使用</li>
+                  <li>帶人進 Skool 的方法</li>
+                  <li>康樂富與人生系統說明</li>
+                  <li>七口計畫前哨</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            <p><strong>心態改變：</strong>從「我要把自己的東西做好」，變成「我開始能幫別人也走進來」。</p>
+          </div>
+        </article>
+
+        <article class="section" id="thirty-days">
+          <div class="section-head">
+            <div>
+              <p class="anchor">07 / 前 30 天</p>
+              <h2>前 30 天的重點</h2>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>時段</th>
+                <th>主任務</th>
+                <th>康樂富 / 人生系統相關歷程</th>
+                <th>心態與角色轉變</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="時段">第 2 週</td>
+                <td data-label="主任務">完成人生系統啟動，開始穩定產出、跟進、分享。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">已升級者開始真的用系統做內容、做回覆、做跟進。</td>
+                <td data-label="心態與角色轉變">從投入者變成正在實作的人。</td>
+              </tr>
+              <tr>
+                <td data-label="時段">第 3 週</td>
+                <td data-label="主任務">跟進自己邀進來的人，分辨誰適合往下走。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">開始帶別人進入康樂富與人生系統說明。</td>
+                <td data-label="心態與角色轉變">從自己做，變成開始幫別人做選擇。</td>
+              </tr>
+              <tr>
+                <td data-label="時段">第 4 週</td>
+                <td data-label="主任務">至少讓 1 位自己邀進來的人完成升級，並開始談七口計畫。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">有第一個自己帶出的升級案例，開始談七口可能。</td>
+                <td data-label="心態與角色轉變">從一般成員，變成有複製能力的夥伴。</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="grid-3" style="margin-top:14px">
+            <section class="mini-card">
+              <h3>最低標準一</h3>
+              <p>1 個可展示成果、1 次市場測試、1 次進度回報。</p>
+            </section>
+            <section class="mini-card">
+              <h3>最低標準二</h3>
+              <p>1 次案例提交、1 次邀請、1 位跟進中的對象。</p>
+            </section>
+            <section class="mini-card">
+              <h3>更好的狀態</h3>
+              <p>至少 1 位自己邀進來的人，也完成康樂富與人生系統升級。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="section" id="ninety-days">
+          <div class="section-head">
+            <div>
+              <p class="anchor">08 / 前 90 天</p>
+              <h2>前 90 天要養出什麼人</h2>
+            </div>
+          </div>
+          <p class="lead">前 90 天的目標，不是再多學一點，而是把其中一部分人養成你口中的小線頭。</p>
+          <table>
+            <thead>
+              <tr>
+                <th>階段</th>
+                <th>任務</th>
+                <th>康樂富 / 人生系統相關歷程</th>
+                <th>心態與角色轉變</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="階段">第 2 個月</td>
+                <td data-label="任務">穩定帶一小組人，協助新人啟動與跟進。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">可以協助別人理解康樂富與人生系統，不只講自己的故事。</td>
+                <td data-label="心態與角色轉變">從實作者變成陪跑者。</td>
+              </tr>
+              <tr>
+                <td data-label="階段">第 3 個月</td>
+                <td data-label="任務">開始有分享舞台，能拆案例、做小分享、陪跑新人。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">可以分享自己的升級路徑、安裝經驗、帶人經驗。</td>
+                <td data-label="心態與角色轉變">從陪跑者變成小線頭。</td>
+              </tr>
+              <tr>
+                <td data-label="階段">第 90 天後</td>
+                <td data-label="任務">開始進入更深培育與教學角色。</td>
+                <td data-label="康樂富 / 人生系統相關歷程">能帶人、能示範、能談七口、能協助推動更深路線。</td>
+                <td data-label="心態與角色轉變">從小線頭進到帶領者 / 導航員。</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="grid-2" style="margin-top:14px">
+            <section class="mini-card">
+              <h3>這一段要給的舞台</h3>
+              <ul>
+                <li>小組分享</li>
+                <li>案例拆解</li>
+                <li>新人啟動陪跑</li>
+                <li>主題短講</li>
+                <li>小型教學</li>
+              </ul>
+            </section>
+            <section class="mini-card">
+              <h3>凱龍對小線頭的定義</h3>
+              <p>能分享、能邀請、能跟進、能協助新人啟動、能帶一小組人往前走的人。它不是最終的高階帶領者，但已經不是普通會員。</p>
+            </section>
+          </div>
+        </article>
+
+        <article class="section" id="layout-advice">
+          <div class="section-head">
+            <div>
+              <p class="anchor">09 / Skool 版位安排</p>
+              <h2>Skool 內部版面建議，到底是放哪裡</h2>
+            </div>
+          </div>
+          <p class="lead">
+            你問得很對。這不是單指一篇文章，也不是只指課程區。
+            它指的是：整個 Skool 裡，哪些東西要放在置頂、哪些放課程、哪些放每週貼文與成果回報區。
           </p>
-          <div class="timeline">
-            <section class="timeline-item">
-              <h3>前 48 小時</h3>
-              <p>先被整理清楚，不先看很多內容。</p>
+          <div class="grid-3">
+            <section class="mini-card">
+              <h3>置頂釘選區</h3>
               <ul>
-                <li>Welcome / Start Here</li>
-                <li>Persona 問卷</li>
-                <li>個人化 Day 1 體驗</li>
-                <li>48h checklist</li>
+                <li>先從這裡開始</li>
+                <li>進一步合作申請入口</li>
+                <li>人生系統安裝中心</li>
+                <li>成果回報與邀請模板</li>
               </ul>
             </section>
-            <section class="timeline-item">
-              <h3>前 7 天</h3>
-              <p>先把第一版做出來，並做第一次對外測試。</p>
+            <section class="mini-card">
+              <h3>課程區</h3>
               <ul>
-                <li>Build Sprint</li>
-                <li>首版頁面 / 攻略包</li>
-                <li>CTA 與承接點</li>
-                <li>第一次測試回報</li>
+                <li>啟動區</li>
+                <li>第一個可分享版本</li>
+                <li>七天核心課程</li>
+                <li>健康底層配置與進一步合作</li>
+                <li>人生系統安裝與啟動</li>
+                <li>30 天帶人與複製</li>
+                <li>七口計畫與帶領者培育</li>
               </ul>
             </section>
-            <section class="timeline-item">
-              <h3>前 30 天</h3>
-              <p>把成果、進度與訊號累積成續費理由。</p>
+            <section class="mini-card">
+              <h3>每週貼文與互動區</h3>
               <ul>
-                <li>每週固定 rhythm</li>
-                <li>Proof Wall</li>
+                <li>本週任務</li>
+                <li>本週直播</li>
+                <li>成果牆</li>
+                <li>案例拆解</li>
                 <li>進度回報</li>
-                <li>案例資料提交</li>
-              </ul>
-            </section>
-            <section class="timeline-item">
-              <h3>前 90 天</h3>
-              <p>進入選修、重估 Persona，並判斷更深升級。</p>
-              <ul>
-                <li>Persona 重新評估</li>
-                <li>進階技能樹推薦</li>
-                <li>implementation 適配</li>
-                <li>下一階段放大點</li>
               </ul>
             </section>
           </div>
-          <div class="accent-note">
-            <p><strong>旅程強點：</strong>這條路徑的價值不在內容多，而在於它把 activation、proof、retention 與 upgrade 串成一條能被營運的節奏。</p>
+          <div class="note">
+            <p><strong>凱龍的答案：</strong>不是只放置頂，也不是只放課程，而是三層一起配。最重要的放置頂，需要照順序走的放課程，需要持續推進的放每週貼文與成果回報區。</p>
           </div>
         </article>
 
-        <article class="section" id="persona">
+        <article class="section" id="mindset">
           <div class="section-head">
             <div>
-              <p class="section-anchor">07 / Persona</p>
-              <h2>Persona 怎麼進來，但不讓課程分裂</h2>
+              <p class="anchor">10 / 心態與角色轉變</p>
+              <h2>這些人到底在變成什麼</h2>
             </div>
           </div>
-          <p class="section-lead">
-            凱龍定版的原則很單純：入口分流，主線統一，選修再分流，最後回歸統一。
-          </p>
-          <div class="persona-flow">
-            <section class="persona-box">
-              <h3>L1 入口分流</h3>
-              <p>Boss / Artisan / Explorer / Builder 四條起手式，只負責第一次 wow 與起步感。</p>
-            </section>
-            <section class="persona-box">
-              <h3>L2-L3 主線統一</h3>
-              <p>全員回到同一條課程主線：做出版本、理解事業邏輯、開始測市場。</p>
-            </section>
-            <section class="persona-box">
-              <h3>L4-L5 選修分流</h3>
-              <p>依 Persona 與行為數據調整推薦權重，但不變成四套獨立社群。</p>
-            </section>
-            <section class="persona-box">
-              <h3>L3 結束重估</h3>
-              <p>Persona 可以流動。它是推薦引擎，不是身分鎖定。</p>
-            </section>
-          </div>
-          <div class="warning-note">
-            <p><strong>重要邊界：</strong>Explorer 不需要獨立進階課程包。文件裡最穩的結論，是讓他先走主線，之後再轉入 Boss / Artisan / Builder 路徑。</p>
-          </div>
-        </article>
-
-        <article class="section" id="boundaries">
-          <div class="section-head">
-            <div>
-              <p class="section-anchor">08 / Boundaries</p>
-              <h2>哪些東西不能過早承諾</h2>
-            </div>
-          </div>
-          <div class="do-not">
-            <section class="do-card">
-              <h3>L1-L3 不該當前台 promise 的內容</h3>
-              <ul>
-                <li>全 Agent Skill Chat</li>
-                <li>Skill 開發權</li>
-                <li>Agent 自訂權</li>
-                <li>白牌授權</li>
-                <li>導師面板</li>
-                <li>完整財務系統</li>
-                <li>全部顧問資源一次開放</li>
-              </ul>
-            </section>
-            <section class="do-card">
-              <h3>正確做法</h3>
-              <ul>
-                <li>先交付第一階段結果</li>
-                <li>再依 level 與標籤逐步解鎖</li>
-                <li>把升級感建立在真實可用的新資源上</li>
-                <li>讓前台語言只對應現在看得到的結果</li>
-              </ul>
-            </section>
-          </div>
-        </article>
-
-        <article class="section" id="structure">
-          <div class="section-head">
-            <div>
-              <p class="section-anchor">09 / Structure</p>
-              <h2>Skool 內部版面建議</h2>
-            </div>
-          </div>
-          <p class="section-lead">
-            內部版面不需要太多層，重點是讓新會員知道先去哪、做完後去哪、下一層又在哪裡。
-          </p>
-          <div class="system-grid">
-            <section class="system-card">
-              <h3>Welcome / Start Here</h3>
-              <p>先做 Persona 問卷、拿到 Day 1 體驗、完成 48h checklist。</p>
-            </section>
-            <section class="system-card">
-              <h3>Build Sprint</h3>
-              <p>放本週唯一主題、模板、範例、公改與交付規格。</p>
-            </section>
-            <section class="system-card">
-              <h3>Core Map</h3>
-              <p>放 L3 的核心課程與一人事業主線，不把所有選修都堆進來。</p>
-            </section>
-            <section class="system-card">
-              <h3>Tools + Templates</h3>
-              <p>只顯示已解鎖工具，讓每個新模組出現都像打開新地圖。</p>
-            </section>
-            <section class="system-card">
-              <h3>Proof Wall</h3>
-              <p>放 before / after、案例、市場訊號，讓續費理由可見。</p>
-            </section>
-            <section class="system-card">
-              <h3>Next Stage</h3>
-              <p>只顯示當前適合的下一層，不提前把所有高價與高權限混在首頁。</p>
-            </section>
-          </div>
-        </article>
-
-        <article class="section" id="sources">
-          <div class="section-head">
-            <div>
-              <p class="section-anchor">10 / Sources & Advisors</p>
-              <h2>依據與顧問統整</h2>
-            </div>
-          </div>
-          <p class="section-lead">
-            這一版不是無中生有，而是由凱龍回收既有規格，並交給三路專家分別審核 `課程架構`、`使用者旅程`、`模組解鎖` 後整合而成。
-          </p>
-          <div class="strip">
-            <div class="strip-item">
-              <h3>課程架構顧問</h3>
-              <p>保留 `清晰路徑 > 大量內容` 與 `先做再懂`，並確立 L1-L3 主線、L4 之後才進技能樹。</p>
-            </div>
-            <div class="strip-item">
-              <h3>旅程顧問</h3>
-              <p>保留 `48h -> 7 天 -> 30 天 -> 90 天` 的骨架，並把 proof 與續費理由放回核心位置。</p>
-            </div>
-            <div class="strip-item">
-              <h3>解鎖顧問</h3>
-              <p>確認 Persona 是入口分流與推薦權重，不是四套課程；高階模組應後移解鎖。</p>
-            </div>
-          </div>
-          <div class="accent-note">
-            <p><strong>主要依據文件：</strong>UBO Skool 課綱 v2、創始會員主規格、營運包、冒險者平台統一架構、Persona 分流與 Jarvis 模組設計，以及命名與漏斗重整文件。</p>
-          </div>
-          <p class="footer-note" style="margin-top:16px">
-            整理日期：2026-04-15。總指揮：ChironAdvisor。
-            如果你是拿這頁做對內對焦，建議先看 `新的等級架構`、`每個等級會拿到什麼`、`參與者使用者旅程` 這三段。
+          <table>
+            <thead>
+              <tr>
+                <th>階段</th>
+                <th>他心裡在想什麼</th>
+                <th>他變成什麼角色</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="階段">剛加入</td>
+                <td data-label="他心裡在想什麼">我先看看這是不是適合我。</td>
+                <td data-label="他變成什麼角色">觀望者</td>
+              </tr>
+              <tr>
+                <td data-label="階段">做出第一份內容</td>
+                <td data-label="他心裡在想什麼">原來我也可以開始分享。</td>
+                <td data-label="他變成什麼角色">啟動者</td>
+              </tr>
+              <tr>
+                <td data-label="階段">開始邀請別人</td>
+                <td data-label="他心裡在想什麼">原來我做的東西可以接到人。</td>
+                <td data-label="他變成什麼角色">創造者</td>
+              </tr>
+              <tr>
+                <td data-label="階段">完成 45,000 與安裝</td>
+                <td data-label="他心裡在想什麼">我不是旁觀者，我真的投入了。</td>
+                <td data-label="他變成什麼角色">解鎖者</td>
+              </tr>
+              <tr>
+                <td data-label="階段">開始跟進與帶 1 人</td>
+                <td data-label="他心裡在想什麼">原來我可以幫別人也走進來。</td>
+                <td data-label="他變成什麼角色">實戰者</td>
+              </tr>
+              <tr>
+                <td data-label="階段">開始談七口與帶小組</td>
+                <td data-label="他心裡在想什麼">我開始不只是自己做，我在複製。</td>
+                <td data-label="他變成什麼角色">小線頭 / 專精者</td>
+              </tr>
+              <tr>
+                <td data-label="階段">開始分享與教課</td>
+                <td data-label="他心裡在想什麼">我已經可以帶人，也能為整個系統貢獻。</td>
+                <td data-label="他變成什麼角色">帶領者 / 導航員</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="footer" style="margin-top:16px">
+            整理日期：2026-04-16。總指揮：ChironAdvisor。
+            這一版的核心不是把更多內容塞進 Skool，而是把等級 3、等級 4、前 7 天、前 30 天、前 90 天的任務重新排順，讓康樂富與人生系統接進來時更自然、更早，也更可執行。
           </p>
         </article>
       </section>
