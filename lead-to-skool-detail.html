@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UBO 名單端到 Skool 細節版</title>
+  <meta name="description" content="凱龍統整版：從自媒體鉤子、實作包、感謝頁三分流、14 天跟進 Email，到 Skool 的起始置頂、起始課程與前 7 天啟動節奏。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f3eee5;
+      --paper:#fbf8f1;
+      --paper-strong:#f4ede2;
+      --ink:#1f1913;
+      --muted:#6c6257;
+      --line:#d8cdbf;
+      --accent:#7d5a3f;
+      --accent-soft:#ecdfd2;
+      --warn:#8a4521;
+      --max:1380px;
+      --shadow:0 22px 48px rgba(42,27,14,0.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+      line-height:1.78;
+      background:
+        linear-gradient(rgba(255,255,255,0.12), rgba(255,255,255,0.12)),
+        radial-gradient(circle at top left, rgba(125,90,63,0.1), transparent 36%),
+        linear-gradient(to bottom, #efe7dc 0%, #f3eee5 28%, #f7f2eb 100%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    h1,h2,h3,h4,p,ul,ol{margin:0}
+
+    .page{
+      width:min(calc(100% - 28px), var(--max));
+      margin:0 auto;
+      padding:24px 0 72px;
+    }
+
+    .hero,
+    .section,
+    .rail-card,
+    .mini-card{
+      border:1px solid var(--line);
+      background:var(--paper);
+    }
+
+    .hero{
+      padding:34px 30px 28px;
+      background:
+        linear-gradient(140deg, rgba(125,90,63,0.08), rgba(125,90,63,0) 46%),
+        var(--paper);
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow,
+    .micro,
+    .anchor,
+    .tag{
+      font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+      letter-spacing:0.08em;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    h1{
+      max-width:12ch;
+      font-family:"Noto Serif TC","Songti TC",serif;
+      font-size:clamp(2.2rem, 4.8vw, 4rem);
+      line-height:1.08;
+      letter-spacing:-0.03em;
+    }
+
+    .hero-summary{
+      margin-top:18px;
+      max-width:900px;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+
+    .hero-grid{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .hero-box{
+      padding-top:14px;
+      border-top:2px solid var(--ink);
+    }
+
+    .hero-box p{color:var(--muted)}
+    .hero-box ul{margin:0;padding-left:18px}
+    .hero-box li{margin-top:8px}
+
+    .top-links{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .top-links a,
+    .action-link{
+      display:inline-block;
+      padding:10px 12px;
+      border:1px solid var(--ink);
+      background:var(--ink);
+      color:#fff;
+      font-size:0.93rem;
+    }
+
+    .top-links a.secondary{
+      background:var(--paper);
+      color:var(--ink);
+      border-color:var(--line);
+    }
+
+    .layout{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:290px minmax(0,1fr);
+      gap:24px;
+      align-items:start;
+    }
+
+    .rail{
+      position:sticky;
+      top:18px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .rail-card{padding:16px}
+
+    .rail-card h3{
+      font-size:1rem;
+      line-height:1.35;
+      margin-bottom:10px;
+    }
+
+    .rail-card p{
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+
+    .toc{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:12px;
+    }
+
+    .toc a{
+      display:block;
+      padding:10px 11px;
+      border:1px solid var(--line);
+      background:var(--paper-strong);
+      font-size:0.94rem;
+    }
+
+    .toc a:hover{background:#eee4d7}
+
+    .content{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .section{padding:24px 24px 22px}
+
+    .section-head{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:12px 18px;
+      align-items:flex-end;
+      margin-bottom:18px;
+      padding-bottom:14px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .anchor{
+      font-size:11px;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    h2{
+      font-family:"Noto Serif TC","Songti TC",serif;
+      font-size:clamp(1.5rem, 2vw, 2.15rem);
+      line-height:1.2;
+      letter-spacing:-0.02em;
+    }
+
+    .lead{
+      color:var(--muted);
+      max-width:780px;
+      margin-bottom:18px;
+    }
+
+    .grid-3,
+    .grid-2{
+      display:grid;
+      gap:12px;
+    }
+
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    .mini-card{
+      padding:16px 16px 14px;
+      background:var(--paper-strong);
+    }
+
+    .mini-card h3{
+      font-size:1.02rem;
+      margin-bottom:8px;
+    }
+
+    .mini-card p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .mini-card ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .mini-card li{margin-top:7px}
+
+    .note,
+    .warn{
+      margin-top:16px;
+      padding:14px 15px;
+      border-left:3px solid var(--accent);
+      background:var(--accent-soft);
+    }
+
+    .warn{
+      border-left-color:var(--warn);
+      background:#f3e1d5;
+    }
+
+    .note p,
+    .warn p{
+      color:#4e4137;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:0.95rem;
+    }
+
+    th,td{
+      padding:12px 10px;
+      text-align:left;
+      vertical-align:top;
+      border-bottom:1px solid var(--line);
+    }
+
+    th{
+      font-size:11px;
+      text-transform:uppercase;
+      color:var(--muted);
+      letter-spacing:0.08em;
+      background:var(--paper-strong);
+    }
+
+    .tag{
+      display:inline-block;
+      font-size:11px;
+      text-transform:uppercase;
+      color:var(--muted);
+      padding:4px 8px;
+      border:1px solid var(--line);
+      background:var(--paper-strong);
+    }
+
+    .footer{
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+
+    @media (max-width:1120px){
+      .layout{grid-template-columns:1fr}
+      .rail{position:static}
+      .toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media (max-width:860px){
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .toc{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:720px){
+      .page{width:min(calc(100% - 16px), var(--max));padding:16px 0 44px}
+      .hero,.section{padding-left:16px;padding-right:16px}
+      table,thead,tbody,tr,th,td{display:block}
+      thead{display:none}
+      tr{border:1px solid var(--line);margin-bottom:10px;background:var(--paper-strong)}
+      td{border:none;padding:10px 12px}
+      td::before{
+        content:attr(data-label);
+        display:block;
+        margin-bottom:4px;
+        font-size:11px;
+        color:var(--muted);
+        text-transform:uppercase;
+        letter-spacing:0.08em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">UBO / 名單端到 Skool / 細節版</p>
+      <h1>先收名單，再把人推進有成果的容器</h1>
+      <p class="hero-summary">
+        這一頁承接主規劃頁，專門處理第一段最容易失真的地方：自媒體鉤子怎麼收進 `實作包`，感謝頁怎麼分流，14 天信怎麼把人推到第一個小成果，以及人一進 Skool 後到底先看什麼、先做什麼、怎麼拿到第一個有感成果。
+      </p>
+      <div class="hero-grid">
+        <div class="hero-box">
+          <p class="micro">這頁處理什麼</p>
+          <ul>
+            <li>自媒體鉤子與留言 `實作包` 的收法</li>
+            <li>實作包頁與感謝頁三分流</li>
+            <li>14 天跟進 Email 地圖</li>
+            <li>Skool 的起始置頂、起始課程與每週節奏</li>
+          </ul>
+        </div>
+        <div class="hero-box">
+          <p class="micro">這頁的定版原則</p>
+          <ul>
+            <li>前台不再用硬的 `定位` 當鉤子</li>
+            <li>冷流量不直接硬賣 Skool</li>
+            <li>Skool 一進去先有路，再有課</li>
+            <li>先做出第一個小版本，再談更深合作</li>
+          </ul>
+        </div>
+      </div>
+      <div class="top-links">
+        <a href="index.html">回 Skool 總覽頁</a>
+        <a class="secondary" href="index.html#summary">回到主規劃重點</a>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="rail">
+        <section class="rail-card">
+          <p class="micro">快速說明</p>
+          <h3>這頁是什麼</h3>
+          <p>給你與夥伴直接接手執行的細節版，不只講方向，也把第一批應該怎麼寫、怎麼排、怎麼分流一起整理進來。</p>
+        </section>
+        <section class="rail-card">
+          <p class="micro">頁內導覽</p>
+          <nav class="toc" aria-label="頁內導覽">
+            <a href="#route">總路徑</a>
+            <a href="#hooks">前端鉤子</a>
+            <a href="#pack">實作包與收名單</a>
+            <a href="#thanks">感謝頁三分流</a>
+            <a href="#emails">14 天信件</a>
+            <a href="#entry">進站首頁</a>
+            <a href="#course">起始課程</a>
+            <a href="#articles">文章與每週節奏</a>
+            <a href="#queue">下一步執行順序</a>
+          </nav>
+        </section>
+        <section class="rail-card">
+          <p class="micro">一句話版本</p>
+          <h3>先把人收進 `實作包`，再用小成果把人推進 Skool，而不是一開始就把整套東西丟到他面前。</h3>
+        </section>
+      </aside>
+
+      <section class="content">
+        <article class="section" id="route">
+          <div class="section-head">
+            <div>
+              <p class="anchor">01 / 總路徑</p>
+              <h2>這一段真正的路徑</h2>
+            </div>
+          </div>
+          <div class="grid-3">
+            <section class="mini-card">
+              <h3>第一層：內容</h3>
+              <p>先打中身份張力、失控感、專長沒接上市場、未來感，不先講產品規格。</p>
+            </section>
+            <section class="mini-card">
+              <h3>第二層：實作包</h3>
+              <p>用留言 `實作包` 收名單，先給起步包，不直接逼訂閱。</p>
+            </section>
+            <section class="mini-card">
+              <h3>第三層：Skool</h3>
+              <p>等對方知道自己想往前推，再進 `一人事業升級地圖` 這個容器。</p>
+            </section>
+          </div>
+          <div class="note">
+            <p><strong>凱龍的收斂：</strong>冷流量主路徑是 `內容 -> 實作包 -> 跟進信 -> Skool`；高意圖的人，才適合從感謝頁直接進 Skool 訂閱頁。</p>
+          </div>
+        </article>
+
+        <article class="section" id="hooks">
+          <div class="section-head">
+            <div>
+              <p class="anchor">02 / 前端鉤子</p>
+              <h2>自媒體前台先打什麼</h2>
+            </div>
+          </div>
+          <p class="lead">前台不要再拿硬詞當主角。先用下面四種張力把人打中，再收進 `實作包`。</p>
+          <div class="grid-2">
+            <section class="mini-card">
+              <h3>身份張力型</h3>
+              <ul>
+                <li>你不是沒料，你只是還沒被看懂。</li>
+                <li>很多人卡住，不是因為不努力，而是因為沒有一個像樣的版本。</li>
+                <li>你現在缺的不是更多知識，而是一個別人看得懂的起步方式。</li>
+              </ul>
+            </section>
+            <section class="mini-card">
+              <h3>失控感型</h3>
+              <ul>
+                <li>學很多 AI，但收入和人生沒有真的往前。</li>
+                <li>每天都很忙，但沒有一件事真的在累積。</li>
+                <li>做了很多零碎內容，卻還是沒有入口。</li>
+              </ul>
+            </section>
+            <section class="mini-card">
+              <h3>專長沒接上市場型</h3>
+              <ul>
+                <li>你會很多，但市場根本接不到你。</li>
+                <li>你會做，不代表別人看得懂你在賣什麼。</li>
+                <li>問題不是你沒能力，是你還沒有把能力做成一個能出手的版本。</li>
+              </ul>
+            </section>
+            <section class="mini-card">
+              <h3>未來感型</h3>
+              <ul>
+                <li>以前要組團隊才能做的事，現在一個人也能先開局。</li>
+                <li>AI 不是多一個工具，而是讓你有機會做出新版本的自己。</li>
+                <li>新時代不是比較忙，而是比較會把能力變成槓桿。</li>
+              </ul>
+            </section>
+          </div>
+          <div class="warn">
+            <p><strong>這些詞不要站在第一屏：</strong> `定位診斷引擎`、`第一個成交入口`、`個人商業 OS`、`完整人生系統`、`生意實戰`、`超級個體`。</p>
+          </div>
+        </article>
+
+        <article class="section" id="pack">
+          <div class="section-head">
+            <div>
+              <p class="anchor">03 / 實作包與收名單</p>
+              <h2>收名單先只用一個主動作</h2>
+            </div>
+          </div>
+          <p class="lead">這一版先統一用 `留言 實作包`，不要前台同時測太多行動。</p>
+          <div class="grid-2">
+            <section class="mini-card">
+              <h3>可直接用的收法</h3>
+              <ul>
+                <li>如果你想把這件事整理成一個可以直接開始的版本，留言 `實作包`。</li>
+                <li>如果你想知道自己現在最適合先做哪個版本，留言 `實作包`。</li>
+                <li>如果你不想再只是在聽，想先拿到一個能動手的起步包，留言 `實作包`。</li>
+              </ul>
+            </section>
+            <section class="mini-card">
+              <h3>實作包裡要有什麼</h3>
+              <ul>
+                <li>現況對照：你現在卡在哪一型</li>
+                <li>起步切口：你最適合先從哪裡開始</li>
+                <li>第一個可賣版本：你的起步版本長什麼樣</li>
+                <li>7 天起步清單：下一週每天做什麼</li>
+              </ul>
+            </section>
+          </div>
+          <div class="note">
+            <p><strong>實作包的角色：</strong>不是資訊訂閱禮物，而是讓對方在 5 分鐘內感覺到「我不是沒料，我只是沒有被整理」。</p>
+          </div>
+        </article>
+
+        <article class="section" id="thanks">
+          <div class="section-head">
+            <div>
+              <p class="anchor">04 / 感謝頁三分流</p>
+              <h2>感謝頁不要一上來就硬賣</h2>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>按鈕</th>
+                <th>適合誰</th>
+                <th>導向哪裡</th>
+                <th>按鈕文案建議</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="按鈕">我想立刻開始做</td>
+                <td data-label="適合誰">已經很有行動意圖、不想再囤資料的人</td>
+                <td data-label="導向哪裡">Skool 訂閱頁</td>
+                <td data-label="按鈕文案建議">`我想這週就開始做` / `直接帶我進起步流程`</td>
+              </tr>
+              <tr>
+                <td data-label="按鈕">我想先看我最適合哪種起步</td>
+                <td data-label="適合誰">還在判斷自己從哪裡開始的人</td>
+                <td data-label="導向哪裡">簡短測試頁或加強版起步說明</td>
+                <td data-label="按鈕文案建議">`先幫我找最適合的起步` / `我想先看我現在卡在哪`</td>
+              </tr>
+              <tr>
+                <td data-label="按鈕">我先收下實作包</td>
+                <td data-label="適合誰">先觀望的人</td>
+                <td data-label="導向哪裡">回信箱，進 14 天跟進</td>
+                <td data-label="按鈕文案建議">`我先把實作包收好` / `先寄給我，我晚點看`</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="note">
+            <p><strong>感謝頁首屏句型：</strong>你的 `第一個可賣版本實作包` 已經寄到信箱了。但如果你不想只是拿到一包資料，而是想這週真的把第一個版本做出來，你現在有三條路。</p>
+          </div>
+        </article>
+
+        <article class="section" id="emails">
+          <div class="section-head">
+            <div>
+              <p class="anchor">05 / 14 天信件</p>
+              <h2>跟進 Email 不是一直推銷，而是一直把路照亮</h2>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>時間</th>
+                <th>信件角色</th>
+                <th>主旨方向</th>
+                <th>這封交付什麼</th>
+                <th>唯一行動</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="時間">Day 0</td>
+                <td data-label="信件角色">交付信</td>
+                <td data-label="主旨方向">你的 `實作包` 在這裡</td>
+                <td data-label="這封交付什麼">先把禮物交出去</td>
+                <td data-label="唯一行動">打開實作包</td>
+              </tr>
+              <tr>
+                <td data-label="時間">Day 1</td>
+                <td data-label="信件角色">觀點信</td>
+                <td data-label="主旨方向">工具不是第一步</td>
+                <td data-label="這封交付什麼">建立正確順序</td>
+                <td data-label="唯一行動">看下一步說明</td>
+              </tr>
+              <tr>
+                <td data-label="時間">Day 3</td>
+                <td data-label="信件角色">故事信</td>
+                <td data-label="主旨方向">為什麼很多人會做卻接不到市場</td>
+                <td data-label="這封交付什麼">建立信任與共鳴</td>
+                <td data-label="唯一行動">回一個問題</td>
+              </tr>
+              <tr>
+                <td data-label="時間">Day 5</td>
+                <td data-label="信件角色">起步信</td>
+                <td data-label="主旨方向">今天先不用做很多，只做這一步</td>
+                <td data-label="這封交付什麼">拉出第一個小動作</td>
+                <td data-label="唯一行動">寫一句版本描述</td>
+              </tr>
+              <tr>
+                <td data-label="時間">Day 7</td>
+                <td data-label="信件角色">開窗信</td>
+                <td data-label="主旨方向">如果你想這週真的做出來</td>
+                <td data-label="這封交付什麼">第一次正式打開 Skool</td>
+                <td data-label="唯一行動">進 Skool 看路線</td>
+              </tr>
+              <tr>
+                <td data-label="時間">Day 9</td>
+                <td data-label="信件角色">猶豫信</td>
+                <td data-label="主旨方向">你不需要一次看完全部</td>
+                <td data-label="這封交付什麼">處理怕跟不上</td>
+                <td data-label="唯一行動">看 `先從這裡開始`</td>
+              </tr>
+              <tr>
+                <td data-label="時間">Day 12</td>
+                <td data-label="信件角色">差異信</td>
+                <td data-label="主旨方向">實作包、免費內容、Skool 有什麼不同</td>
+                <td data-label="這封交付什麼">講清楚三層差異</td>
+                <td data-label="唯一行動">判斷自己在哪一層</td>
+              </tr>
+              <tr>
+                <td data-label="時間">Day 14</td>
+                <td data-label="信件角色">選路信</td>
+                <td data-label="主旨方向">你接下來想走哪條路</td>
+                <td data-label="這封交付什麼">讓讀者自己做選擇</td>
+                <td data-label="唯一行動">選路</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="warn">
+            <p><strong>信件裡要避免：</strong>一封信兩個以上主行動、太早講價格、太早講完整人生系統、太像催單、太多內部術語。</p>
+          </div>
+        </article>
+
+        <article class="section" id="entry">
+          <div class="section-head">
+            <div>
+              <p class="anchor">06 / 進站首頁</p>
+              <h2>人一進 Skool，第一眼先看到什麼</h2>
+            </div>
+          </div>
+          <div class="grid-3">
+            <section class="mini-card">
+              <h3>第一步</h3>
+              <p>先填起步資料，不先亂逛。把受眾、切口、卡點、目前狀態先收齊。</p>
+            </section>
+            <section class="mini-card">
+              <h3>第二步</h3>
+              <p>先看 `先從這裡開始`，知道前 7 天只要先做哪三件事。</p>
+            </section>
+            <section class="mini-card">
+              <h3>第三步</h3>
+              <p>再進起始課程，按順序完成第一個起步動作。</p>
+            </section>
+          </div>
+          <div class="note">
+            <p><strong>這裡的原則：</strong>新成員剛進來最需要的是方向感，不是資訊量。第一屏要解決混亂，不是解決內容不夠多。</p>
+          </div>
+        </article>
+
+        <article class="section" id="course">
+          <div class="section-head">
+            <div>
+              <p class="anchor">07 / 起始課程</p>
+              <h2>起始置頂與前 3 個模組怎麼排</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <section class="mini-card">
+              <h3>固定置頂 5 篇</h3>
+              <ul>
+                <li>`先從這裡開始：你前 7 天只要先做這三件事`</li>
+                <li>`七天後的下一步導航：你現在在哪一條線`</li>
+                <li>`如果你想走更深，從這裡申請進一步合作`</li>
+                <li>`人生系統安裝中心：已啟動者從這裡進`</li>
+                <li>`成果回報與邀請模板：不知道怎麼分享的人看這裡`</li>
+              </ul>
+            </section>
+            <section class="mini-card">
+              <h3>起始課程前 3 模組</h3>
+              <ul>
+                <li>模組 1：歡迎來到這裡</li>
+                <li>模組 2：建立你的起步資料</li>
+                <li>模組 3：你的第一步</li>
+              </ul>
+            </section>
+          </div>
+          <table style="margin-top:14px">
+            <thead>
+              <tr>
+                <th>模組</th>
+                <th>這模組要解決什麼</th>
+                <th>建議內容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="模組">模組 1：歡迎來到這裡</td>
+                <td data-label="這模組要解決什麼">讓人知道這裡不是內容庫，而是有節奏的推進容器</td>
+                <td data-label="建議內容">2-3 分鐘歡迎影片、前 7 天路線圖、最小起步清單</td>
+              </tr>
+              <tr>
+                <td data-label="模組">模組 2：建立你的起步資料</td>
+                <td data-label="這模組要解決什麼">收齊目前狀態、切口與卡點</td>
+                <td data-label="建議內容">起步資料表、一句話版本描述練習、自我介紹模板</td>
+              </tr>
+              <tr>
+                <td data-label="模組">模組 3：你的第一步</td>
+                <td data-label="這模組要解決什麼">讓人先完成第一個動作，不亂看</td>
+                <td data-label="建議內容">第一個版本方向選擇、第一版骨架模板、第一次回報格式</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="section" id="articles">
+          <div class="section-head">
+            <div>
+              <p class="anchor">08 / 文章與每週節奏</p>
+              <h2>起始文章先寫什麼，每週貼文怎麼帶節奏</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <section class="mini-card">
+              <h3>起始文章 6 篇</h3>
+              <ul>
+                <li>你不是沒能力，你只是還沒有被整理成一個版本</li>
+                <li>為什麼我們先做版本，不是先學更多</li>
+                <li>先不要想太大，先把第一個入口做出來</li>
+                <li>一人事業升級地圖怎麼用</li>
+                <li>做得出來，不代表市場接得到</li>
+                <li>健康不是題外話，它是事業的根</li>
+              </ul>
+            </section>
+            <section class="mini-card">
+              <h3>每週固定節奏</h3>
+              <ul>
+                <li>週一：本週門診</li>
+                <li>週三：建造衝刺</li>
+                <li>週五：成果牆</li>
+                <li>週日：下週公告</li>
+              </ul>
+            </section>
+          </div>
+          <div class="note">
+            <p><strong>文章的角色：</strong>不是隨手發長文，而是幫成員理解為什麼先做版本、先做入口、先拿到市場訊號。<strong>每週貼文的角色：</strong>不是補課，而是推進、回報、拆解、建立節奏。</p>
+          </div>
+        </article>
+
+        <article class="section" id="queue">
+          <div class="section-head">
+            <div>
+              <p class="anchor">09 / 下一步執行順序</p>
+              <h2>現在最值得直接做的東西</h2>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>順序</th>
+                <th>要做什麼</th>
+                <th>為什麼先做這個</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="順序">1</td>
+                <td data-label="要做什麼">`實作包` 名單頁與感謝頁三分流文案</td>
+                <td data-label="為什麼先做這個">因為前台先要有承接物，後面信件與 Skool 才接得起來。</td>
+              </tr>
+              <tr>
+                <td data-label="順序">2</td>
+                <td data-label="要做什麼">14 天跟進 Email 主旨與信綱</td>
+                <td data-label="為什麼先做這個">因為大部分人不會第一天就決定進 Skool，需要一條照亮下一步的路。</td>
+              </tr>
+              <tr>
+                <td data-label="順序">3</td>
+                <td data-label="要做什麼">`先從這裡開始` 置頂全文</td>
+                <td data-label="為什麼先做這個">因為新成員一進站最容易混亂，先把起步路線講清楚。</td>
+              </tr>
+              <tr>
+                <td data-label="順序">4</td>
+                <td data-label="要做什麼">起始課程前 3 模組大綱</td>
+                <td data-label="為什麼先做這個">因為起始課程是新成員最先接觸的正式內容。</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="footer" style="margin-top:16px">
+            整理日期：2026-04-17。總指揮：凱龍。這頁承接的是 UBO 主線中「名單端到 Skool」這一段，目的不是把更多東西講大，而是把第一段路做短、做清楚、做出成就感。
+          </p>
+          <div class="note">
+            <p><strong>主要參照：</strong> `ubo-naming-funnel-replan-2026-04-15`、`ubo-self-media-hook-ladder-2026-04-13`、`ubo-universal-cta-lead-capture-plan-2026-04-13`、`email_funnel_strategy_2026`、`ubo-business-model-funnel-review-2026-04-13`、`ubo-skool-curriculum-journey-replan-2026-04-16`。</p>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
