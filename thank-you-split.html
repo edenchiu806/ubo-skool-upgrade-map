@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UBO｜感謝頁三分流</title>
+  <style>
+    :root{
+      --bg:#f5f1e9;
+      --paper:#fffdf9;
+      --ink:#1c1a17;
+      --muted:#666157;
+      --line:#ddd5c7;
+      --accent:#6f563e;
+      --accent-soft:#f1e8dd;
+      --max:960px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC",system-ui,sans-serif;line-height:1.75}
+    .page{width:min(calc(100% - 24px), var(--max));margin:0 auto;padding:28px 0 54px}
+    .hero,.nav,.section{background:var(--paper);border:1px solid var(--line);margin-bottom:14px}
+    .hero,.section{padding:24px 22px 18px}
+    .nav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:8px;padding:10px}
+    .nav a{border:1px solid var(--line);padding:8px 12px;background:#fff;color:var(--ink);text-decoration:none;font-size:14px}
+    .nav a.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .eyebrow,.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin:0 0 8px}
+    h1,h2,h3{margin:0 0 10px;line-height:1.25}
+    h1{font-size:34px} h2{font-size:22px} h3{font-size:17px}
+    p{margin:0 0 12px} ul,ol{margin:8px 0 12px 22px} li{margin:6px 0}
+    .note{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--accent-soft)}
+    .split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+    .mini{border-top:2px solid var(--ink);padding-top:12px}
+    .cta{display:inline-block;margin-top:12px;padding:11px 16px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700}
+    .cta.alt{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .quote{padding:14px 16px;background:#faf7f1;border:1px solid var(--line);margin:10px 0 12px}
+    @media (max-width:860px){.split{grid-template-columns:1fr} h1{font-size:28px} h2{font-size:19px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">UBO / 感謝頁 / 三分流</div>
+      <h1>你的 `第一個可賣版本實作包` 已經寄到信箱了。</h1>
+      <p>但如果你不想只是拿到一包資料，而是想在接下來一週真的把第一個版本做出來，你現在有三條路可以選。</p>
+      <div class="quote">你不用現在就做出很大的決定。你只要選擇，你接下來比較適合走哪條路。</div>
+    </section>
+
+    <nav class="nav" aria-label="閱讀切換">
+      <a href="index.html">總覽</a>
+      <a href="lead-to-skool-detail.html">細節版</a>
+      <a href="practical-pack.html">實作包頁</a>
+      <a class="active" href="thank-you-split.html">感謝頁</a>
+      <a href="email-14-day.html">14 天 Email</a>
+      <a href="start-here.html">先從這裡開始</a>
+    </nav>
+
+    <section class="section">
+      <div class="label">三條路</div>
+      <h2>現在選一條最適合你的</h2>
+      <div class="split">
+        <div class="mini">
+          <h3>1. 我想立刻開始做</h3>
+          <p>如果你現在的感覺是「我不要再囤資料了，我就是想這週先把第一個版本做出來」，你最適合直接進 Skool 的起步流程。</p>
+          <ul>
+            <li>適合：已經很有行動意圖的人</li>
+            <li>你會得到：前 48 小時清單、第一週路線、每週節奏</li>
+          </ul>
+          <a class="cta" href="start-here.html">直接帶我進起步流程</a>
+        </div>
+        <div class="mini">
+          <h3>2. 我想先看我最適合哪種起步</h3>
+          <p>如果你現在的感覺是「我知道我想開始，但我還不確定自己應該先從哪一種版本下手」，你先看細節版會比較適合。</p>
+          <ul>
+            <li>適合：還在判斷自己切口的人</li>
+            <li>你會得到：路徑圖、實作包角色、Skool 起始設計</li>
+          </ul>
+          <a class="cta alt" href="lead-to-skool-detail.html">先幫我找最適合的起步</a>
+        </div>
+        <div class="mini">
+          <h3>3. 我先收下實作包</h3>
+          <p>如果你現在還不想立刻做決定，也沒有關係。接下來 14 天，你會收到一組跟進信，幫你慢慢把下一步看清楚。</p>
+          <ul>
+            <li>適合：想先觀望、先消化的人</li>
+            <li>你會得到：觀點信、起步信、Skool 開窗信、選路信</li>
+          </ul>
+          <a class="cta alt" href="email-14-day.html">我先看 14 天跟進路線</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">不要誤會</div>
+      <h2>Skool 不是什麼</h2>
+      <ul>
+        <li>不是內容越多越好的地方。</li>
+        <li>不是一進來就要你聽完整人生系統的地方。</li>
+        <li>不是囤工具、囤影片、囤資源的地方。</li>
+      </ul>
+      <div class="quote">它比較像一個有節奏的容器。你進來後，會先被整理清楚，再被推著做出第一個版本。</div>
+    </section>
+
+    <section class="section">
+      <div class="label">接下來 14 天</div>
+      <h2>如果你先不進 Skool，後面你會收到什麼</h2>
+      <ol>
+        <li>Day 0：先把實作包交到你手上。</li>
+        <li>Day 1：讓你知道工具不是第一步。</li>
+        <li>Day 3：用故事跟你講清楚「會做」和「會賣」差在哪。</li>
+        <li>Day 5：拉你做第一個小動作。</li>
+        <li>Day 7：第一次正式打開 Skool。</li>
+        <li>Day 14：讓你自己選接下來想走哪條路。</li>
+      </ol>
+      <a class="cta" href="email-14-day.html">看完整 14 天信件地圖</a>
+    </section>
+  </main>
+</body>
+</html>

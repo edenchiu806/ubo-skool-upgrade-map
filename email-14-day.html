@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UBO｜14 天跟進 Email 地圖</title>
+  <style>
+    :root{
+      --bg:#f5f1e9;
+      --paper:#fffdf9;
+      --ink:#1c1a17;
+      --muted:#666157;
+      --line:#ddd5c7;
+      --accent:#6f563e;
+      --accent-soft:#f1e8dd;
+      --max:980px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC",system-ui,sans-serif;line-height:1.78}
+    .page{width:min(calc(100% - 24px), var(--max));margin:0 auto;padding:28px 0 54px}
+    .hero,.nav,.section{background:var(--paper);border:1px solid var(--line);margin-bottom:14px}
+    .hero,.section{padding:24px 22px 18px}
+    .nav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:8px;padding:10px}
+    .nav a{border:1px solid var(--line);padding:8px 12px;background:#fff;color:var(--ink);text-decoration:none;font-size:14px}
+    .nav a.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .eyebrow,.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin:0 0 8px}
+    h1,h2,h3{margin:0 0 10px;line-height:1.25}
+    h1{font-size:34px} h2{font-size:22px} h3{font-size:17px}
+    p{margin:0 0 12px} ul,ol{margin:8px 0 12px 22px} li{margin:6px 0}
+    .note{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--accent-soft)}
+    .mini{border-top:2px solid var(--ink);padding-top:12px;margin-top:18px}
+    table{width:100%;border-collapse:collapse;font-size:0.95rem}
+    th,td{padding:12px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+    th{font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:0.08em;background:#faf7f1}
+    .quote{padding:14px 16px;background:#faf7f1;border:1px solid var(--line);margin:10px 0 12px}
+    @media (max-width:760px){
+      h1{font-size:28px}
+      h2{font-size:19px}
+      table,thead,tbody,tr,th,td{display:block}
+      thead{display:none}
+      tr{border:1px solid var(--line);margin-bottom:10px;background:#faf7f1}
+      td{border:none;padding:10px 12px}
+      td::before{
+        content:attr(data-label);
+        display:block;
+        margin-bottom:4px;
+        font-size:11px;
+        color:var(--muted);
+        text-transform:uppercase;
+        letter-spacing:0.08em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">UBO / Email / 14 天跟進</div>
+      <h1>14 天不是一直推銷，而是一直把路照亮。</h1>
+      <p>這一組信的任務，不是把人一直催進 Skool，而是先交付、先建立信任、先拉出第一個小動作，再把 Skool 打開成一條更短的路。</p>
+      <div class="note">
+        <strong>每封信都只做一件事：</strong>
+        交付一個觀點、或交付一個小成果、或打開下一步。不要一封信做三件事。
+      </div>
+    </section>
+
+    <nav class="nav" aria-label="閱讀切換">
+      <a href="index.html">總覽</a>
+      <a href="lead-to-skool-detail.html">細節版</a>
+      <a href="practical-pack.html">實作包頁</a>
+      <a href="thank-you-split.html">感謝頁</a>
+      <a class="active" href="email-14-day.html">14 天 Email</a>
+      <a href="start-here.html">先從這裡開始</a>
+    </nav>
+
+    <section class="section">
+      <div class="label">總覽</div>
+      <h2>14 天節奏地圖</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>時間</th>
+            <th>信件角色</th>
+            <th>主旨方向</th>
+            <th>唯一行動</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="時間">Day 0</td>
+            <td data-label="信件角色">交付信</td>
+            <td data-label="主旨方向">你的 `實作包` 在這裡</td>
+            <td data-label="唯一行動">打開實作包</td>
+          </tr>
+          <tr>
+            <td data-label="時間">Day 1</td>
+            <td data-label="信件角色">觀點信</td>
+            <td data-label="主旨方向">工具不是第一步</td>
+            <td data-label="唯一行動">看下一步說明</td>
+          </tr>
+          <tr>
+            <td data-label="時間">Day 3</td>
+            <td data-label="信件角色">故事信</td>
+            <td data-label="主旨方向">為什麼很多人會做卻接不到市場</td>
+            <td data-label="唯一行動">回一個問題</td>
+          </tr>
+          <tr>
+            <td data-label="時間">Day 5</td>
+            <td data-label="信件角色">起步信</td>
+            <td data-label="主旨方向">今天先不用做很多，只做這一步</td>
+            <td data-label="唯一行動">寫一句版本描述</td>
+          </tr>
+          <tr>
+            <td data-label="時間">Day 7</td>
+            <td data-label="信件角色">開窗信</td>
+            <td data-label="主旨方向">如果你想這週真的做出來</td>
+            <td data-label="唯一行動">進 Skool 看路線</td>
+          </tr>
+          <tr>
+            <td data-label="時間">Day 9</td>
+            <td data-label="信件角色">猶豫信</td>
+            <td data-label="主旨方向">你不需要一次看完全部</td>
+            <td data-label="唯一行動">看 `先從這裡開始`</td>
+          </tr>
+          <tr>
+            <td data-label="時間">Day 12</td>
+            <td data-label="信件角色">差異信</td>
+            <td data-label="主旨方向">實作包、免費內容、Skool 有什麼不同</td>
+            <td data-label="唯一行動">判斷自己在哪一層</td>
+          </tr>
+          <tr>
+            <td data-label="時間">Day 14</td>
+            <td data-label="信件角色">選路信</td>
+            <td data-label="主旨方向">你接下來想走哪條路</td>
+            <td data-label="唯一行動">選路</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <div class="label">每封信怎麼寫</div>
+      <h2>主旨與信綱</h2>
+
+      <div class="mini">
+        <h3>Day 0｜交付信</h3>
+        <p><strong>主旨建議：</strong>`你的第一個可賣版本實作包在這裡` / `先把這份起步包收好`</p>
+        <p><strong>這封信要做什麼：</strong>把禮物交出去，輕提後面還有更短的路，但不逼買。</p>
+        <ul>
+          <li>開場：你要的東西先給你</li>
+          <li>中段：大部分人拿到之後，下一個問題會是「那我現在要先做什麼」</li>
+          <li>收尾：如果你想更快，後面我會再給你一條比較短的路</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Day 1｜觀點信</h3>
+        <p><strong>主旨建議：</strong>`工具不是第一步` / `你可能把順序搞反了`</p>
+        <p><strong>這封信要做什麼：</strong>讓對方知道問題不是工具不夠，而是沒有把工具放在正確的位置。</p>
+        <ul>
+          <li>開場：昨天你拿到實作包了</li>
+          <li>中段：為什麼很多人拿到模板還是沒有開始</li>
+          <li>收尾：先把目的放對，工具才會變成槓桿</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Day 3｜故事信</h3>
+        <p><strong>主旨建議：</strong>`為什麼很多人會做，卻接不到市場` / `我後來才發現，差的不是更多能力`</p>
+        <p><strong>這封信要做什麼：</strong>用故事建立信任，讓對方從拿禮物，走到對你有連結。</p>
+        <ul>
+          <li>開場：一段真實經驗或案例</li>
+          <li>中段：會做和會賣之間差了什麼</li>
+          <li>收尾：問對方，他現在最卡的是哪一步</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Day 5｜起步信</h3>
+        <p><strong>主旨建議：</strong>`今天先不用做很多，只做這一步` / `你先把這一句寫出來就好`</p>
+        <p><strong>這封信要做什麼：</strong>把實作包變成一個最小動作。</p>
+        <ul>
+          <li>開場：很多人卡住，不是因為不會，是因為一開始想做太多</li>
+          <li>中段：今天只寫一句版本描述</li>
+          <li>收尾：把那一句寫出來，先不要管完不完整</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Day 7｜開窗信</h3>
+        <p><strong>主旨建議：</strong>`如果你想這週真的做出來` / `我這裡有一條比較短的路`</p>
+        <p><strong>這封信要做什麼：</strong>第一次正式打開 Skool，但不是硬賣，而是把它說成一個更有節奏的容器。</p>
+        <ul>
+          <li>開場：你也可以繼續自己慢慢摸</li>
+          <li>中段：但如果你想這週真的做出第一個版本，這裡會比較快</li>
+          <li>收尾：去看 `先從這裡開始`，再決定要不要進</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Day 9｜猶豫信</h3>
+        <p><strong>主旨建議：</strong>`你不需要一次看完全部` / `很多人不是不想做，是怕自己跟不上`</p>
+        <p><strong>這封信要做什麼：</strong>處理對社群太吵、怕跟不上、怕不適合自己的猶豫。</p>
+        <ul>
+          <li>開場：真正卡住的不是能力，而是節奏被想得太重</li>
+          <li>中段：你這一週只需要先做一件事</li>
+          <li>收尾：去看 `先從這裡開始`，你就知道第一週只做什麼</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Day 12｜差異信</h3>
+        <p><strong>主旨建議：</strong>`實作包、免費內容、Skool，到底差在哪` / `你現在不一定缺更多內容`</p>
+        <p><strong>這封信要做什麼：</strong>說清楚三層差異，讓對方自己知道現在在哪一層。</p>
+        <ul>
+          <li>開場：很多人會把這三件事混在一起</li>
+          <li>中段：實作包幫你起步，免費內容幫你理解，Skool 幫你往前推</li>
+          <li>收尾：你現在最需要的是哪一層</li>
+        </ul>
+      </div>
+
+      <div class="mini">
+        <h3>Day 14｜選路信</h3>
+        <p><strong>主旨建議：</strong>`你接下來想走哪條路` / `你現在不用做大決定，只要先選一條路`</p>
+        <p><strong>這封信要做什麼：</strong>讓讀者自己選：先消化、繼續看內容、正式開始做。</p>
+        <ul>
+          <li>開場：你現在不需要一次答應所有事</li>
+          <li>中段：給三條路，各自對應不同狀態</li>
+          <li>收尾：請他選一條現在最適合自己的</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">補充</div>
+      <h2>這 14 天之後，群發節奏怎麼接</h2>
+      <p>進入暖名單後，建議平時每週 2-3 封即可，不要每天轟炸。</p>
+      <ul>
+        <li>50%：觀點 / 故事</li>
+        <li>25%：社群與案例</li>
+        <li>15%：Skool 鋪陳</li>
+        <li>10%：直接開賣</li>
+      </ul>
+      <div class="quote">真正要賣的不是「一直提醒你有 Skool」，而是「一直讓你感覺：我現在其實已經可以開始了」。</div>
+    </section>
+  </main>
+</body>
+</html>

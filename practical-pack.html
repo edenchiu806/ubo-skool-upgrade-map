@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UBO｜第一個可賣版本實作包</title>
+  <style>
+    :root{
+      --bg:#f5f1e9;
+      --paper:#fffdf9;
+      --ink:#1c1a17;
+      --muted:#666157;
+      --line:#ddd5c7;
+      --accent:#6f563e;
+      --accent-soft:#f1e8dd;
+      --max:920px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC",system-ui,sans-serif;line-height:1.75}
+    .page{width:min(calc(100% - 24px), var(--max));margin:0 auto;padding:28px 0 54px}
+    .hero,.nav,.section{background:var(--paper);border:1px solid var(--line);margin-bottom:14px}
+    .hero,.section{padding:24px 22px 18px}
+    .nav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:8px;padding:10px}
+    .nav a{border:1px solid var(--line);padding:8px 12px;background:#fff;color:var(--ink);text-decoration:none;font-size:14px}
+    .nav a.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .eyebrow,.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin:0 0 8px}
+    h1,h2,h3{margin:0 0 10px;line-height:1.25}
+    h1{font-size:34px} h2{font-size:22px} h3{font-size:17px}
+    p{margin:0 0 12px} ul,ol{margin:8px 0 12px 22px} li{margin:6px 0}
+    .note{margin-top:14px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--accent-soft)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .mini{border-top:2px solid var(--ink);padding-top:12px}
+    .cta{display:inline-block;margin-top:12px;padding:11px 16px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700}
+    .sub{display:block;margin-top:10px;color:var(--muted)}
+    .quote{padding:14px 16px;background:#faf7f1;border:1px solid var(--line);margin:10px 0 12px}
+    @media (max-width:760px){.split{grid-template-columns:1fr} h1{font-size:28px} h2{font-size:19px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">UBO / 名單頁 / 實作包</div>
+      <h1>把會做的，變成會賣的。</h1>
+      <p>領取 `第一個可賣版本實作包`，5 分鐘先看懂你現在最適合先做的切口，並拿到第一個可以直接開始的版本。</p>
+      <a class="cta" href="#next">領取第一個可賣版本實作包</a>
+      <span class="sub">適合想創業的上班族，也適合想把現有生意重整得更好賣的老闆。</span>
+      <div class="note">
+        <strong>你現在拿到的不是更多內容，</strong>
+        而是一個更清楚的下一步。
+      </div>
+    </section>
+
+    <nav class="nav" aria-label="閱讀切換">
+      <a href="index.html">總覽</a>
+      <a href="lead-to-skool-detail.html">細節版</a>
+      <a class="active" href="practical-pack.html">實作包頁</a>
+      <a href="thank-you-split.html">感謝頁</a>
+      <a href="email-14-day.html">14 天 Email</a>
+      <a href="start-here.html">先從這裡開始</a>
+    </nav>
+
+    <section class="section">
+      <div class="label">這份東西是幹嘛的</div>
+      <h2>這份實作包會先幫你做四件事</h2>
+      <div class="split">
+        <div class="mini">
+          <h3>1. 先看懂你現在卡在哪</h3>
+          <p>你現在比較像是：上班族起步、老闆重整、專業者變現，還是正在轉型的人。先知道自己在哪裡，後面才不會亂做。</p>
+        </div>
+        <div class="mini">
+          <h3>2. 先找出比較容易起步的切口</h3>
+          <p>不是先想最完整的事業，而是先找一個市場比較看得懂、你也比較做得動的切口。</p>
+        </div>
+        <div class="mini">
+          <h3>3. 先看到第一個可賣版本</h3>
+          <p>一句話怎麼說、先給誰看、第一版長什麼樣，這些先被整理出來。</p>
+        </div>
+        <div class="mini">
+          <h3>4. 先拿到 7 天起步清單</h3>
+          <p>今天做什麼、明天做什麼、這一週怎麼驗證，你不用自己從零編排。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">適合誰</div>
+      <h2>這份實作包最適合這四種人</h2>
+      <div class="split">
+        <div class="mini">
+          <h3>想創業的上班族</h3>
+          <p>不一定要立刻離職，但想先把手上的能力整理成第一個可以開始測試的版本。</p>
+        </div>
+        <div class="mini">
+          <h3>有能力卻講不清楚的人</h3>
+          <p>你會做很多，但別人還是看不懂你到底能幫他什麼。</p>
+        </div>
+        <div class="mini">
+          <h3>已經有服務但很散的人</h3>
+          <p>你手上其實有東西，只是還沒有被整理成一個更好賣、更好接的版本。</p>
+        </div>
+        <div class="mini">
+          <h3>想用 AI 重整生意的人</h3>
+          <p>你不是想學更多工具，而是想把工具接回自己的內容、生意與成長節奏。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">不是什麼</div>
+      <h2>這份實作包不是這些東西</h2>
+      <ul>
+        <li>不是一份很長的內容總整理。</li>
+        <li>不是完整人生系統的說明書。</li>
+        <li>不是要你一次做五個方向。</li>
+        <li>不是工具清單或課程目錄。</li>
+      </ul>
+      <div class="quote">它比較像一個起步包，先幫你把「我其實有料，但不知道怎麼開始」這件事整理清楚。</div>
+    </section>
+
+    <section class="section" id="next">
+      <div class="label">領取後會發生什麼</div>
+      <h2>你留下資料後，接下來會這樣走</h2>
+      <ol>
+        <li>先立刻拿到 `第一個可賣版本實作包`。</li>
+        <li>接著收到一個最小可執行動作，幫你做出第一個小成果。</li>
+        <li>之後 14 天內，你會收到一組跟進信，讓你知道下一步該怎麼做。</li>
+        <li>如果你想這週就真的開始做，後面會打開一條比較短的路，直接進 Skool 跑起步節奏。</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <div class="label">快路徑</div>
+      <h2>如果你已經很想開始，可以直接走這條</h2>
+      <p>有些人拿到實作包之後，會想先慢慢消化。這很正常。</p>
+      <p>但如果你現在的感覺是：</p>
+      <ul>
+        <li>我不要再囤資料了</li>
+        <li>我就是想這週先把第一個版本做出來</li>
+        <li>我想有人推我往前，而不是自己亂摸</li>
+      </ul>
+      <p>那你接下來最適合看的，是感謝頁的三分流版本與 Skool 的起步路徑。</p>
+      <a class="cta" href="thank-you-split.html">看感謝頁三分流</a>
+    </section>
+  </main>
+</body>
+</html>
